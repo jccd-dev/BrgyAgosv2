@@ -10,6 +10,7 @@ class Input extends Component
 {
 
     public $title;
+    public $name;
     /**
      * Create a new component instance.
      */
