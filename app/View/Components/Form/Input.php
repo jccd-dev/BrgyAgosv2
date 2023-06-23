@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
+
+    public $title;
     /**
      * Create a new component instance.
      */
