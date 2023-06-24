@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\Home;
+use App\Http\Controllers\Dashboard\Profiling;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main-layout');
+});
+
+Route::prefix('dashboard')->group(function(){
+    Route::get('/home', [Home::class, 'render'])->name('d-home');
+    Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
 });

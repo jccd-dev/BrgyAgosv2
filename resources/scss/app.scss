@@ -1,0 +1,25 @@
+@import url('https://fonts.bunny.net/css?family=roboto');
+
+@import '_custom';
+
+@import '~bootstrap/scss/bootstrap';
+@import '~date-picker/dist/css/bootstrap-datepicker.css';
+
+
+// Remove border on focused inputs
+.form-control {
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+
+.nav-link.actives{
+    background-color: $white;
+    color: $dark !important;
+}
+
+.box {
+    height: 100px;
+}
+
