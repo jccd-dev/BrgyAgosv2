@@ -7,5 +7,5 @@
             <option value="{{ $val }}">{{ $key }}</option>
         @endforeach
     </select>
-    <span class="text-danger" id="err-msg"></span>
+    <span class="text-danger d-none" id="err-msg"></span>
 </div>

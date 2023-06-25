@@ -1,4 +1,4 @@
-import 'bootstrap-datepicker/dist/css/datepicker.css'
+import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css'
 import 'bootstrap-datepicker'
 import $ from 'jquery'
 
