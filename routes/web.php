@@ -21,5 +21,9 @@ Route::get('/', function () {
 
 Route::prefix('dashboard')->group(function(){
     Route::get('/home', [Home::class, 'render'])->name('d-home');
-    Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
+    // Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
+    Route::controller(Profiling::class)->group(function () {
+        Route::get('/profiling', 'render')->name('d-profiling');
+        Route::post('/add-profile', 'add_profile')->name('d-profiling-add');
+    });
 });

@@ -15,10 +15,11 @@ class Input extends Component
     public ?string $inputClass;
     public null|string $inputId;
     public ?string $placeholder;
+    public ?bool $required;
     /**
      * Create a new component instance.
      */
-    public function __construct( $name, $label, $type, $inputClass = null, $inputId = null, $placeholder =null)
+    public function __construct( $name, $label, $type, $inputClass = null, $inputId = null, $placeholder =null, $required=null)
     {
         $this->name = $name;
         $this->label = $label;
@@ -26,6 +27,7 @@ class Input extends Component
         $this->inputClass = $inputClass;
         $this->inputId = $inputId;
         $this->placeholder = $placeholder;
+        $this->required = $required;
     }
 
     /**

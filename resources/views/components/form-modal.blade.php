@@ -1,4 +1,4 @@
-<form class="row g-4" id={{$id}}>
+<form class="row g-4" id={{$id}} method="POST">
     {{ $slot }}
 
     <div>

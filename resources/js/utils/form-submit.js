@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
-class FormSubmit{
+class FormSubmit {
     constructor(formData, end_point, formElements){
         this.formData = formData
         this.end_point = end_point
@@ -15,7 +15,7 @@ class FormSubmit{
     // submit form to the server/backend
     async submitForm(){
         try {
-            let res = await axios.post(endPoint, formData)
+            let res = await axios.post(this.end_point, this.formData)
             if(res.status === 200){
                 const Toast = Swal.mixin({
                     toast: true,
@@ -38,11 +38,11 @@ class FormSubmit{
             this.errorHanlder(error.response?.data?.errors)
         }
     }
+
     // display the error message under the input and select if any
-    errorHanlder(){
-        // this.formElements.forEach((el) => el.nextElementSibling.classList.add("d-none"));
+    errorHanlder(err){
         for (const key in err) {
-            formInputs.forEach((el) => {
+            this.formElements.forEach((el) => {
                 if (el.name === key) {
                     el.nextElementSibling.classList.remove("d-none");
                     el.nextElementSibling.textContent = err[key];
@@ -50,6 +50,8 @@ class FormSubmit{
             });
         }
     }
+
+
 }
 
 export default FormSubmit

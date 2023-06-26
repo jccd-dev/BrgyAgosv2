@@ -14,12 +14,14 @@ class Select extends Component
     public function __construct(
         public string $name,
         public string $label,
-        public array $options = []
+        public array $options = [],
+        public ?bool $required = null
     )
     {
         $this->name = $name;
         $this->label = $label;
         $this->options = $options;
+        $this->required = $required;
     }
 
     /**

@@ -11,42 +11,43 @@
         </button>
 
         <!-- Modal -->
-        <x-modal class="modal-xl" title="Profiling">
+        <x-modal class="modal-lg" title="Profiling">
             <x-form-modal id="addProfile">
-                <x-form.input class="col-md-4" name='fname' label='First Name' type='text'/>
-                <x-form.input class="col-md-3" name='mname' label='Middle Name' type='text'/>
-                <x-form.input class="col-md-4" name='lname' label='Last Name' type='text'/>
-                <x-form.input class="col-md-1" name='suffix' label='Suffix' type='text'/>
-                <x-form.input class="col-md-2" name='bod' label='Birth Date' type='text' inputClass='datepicker'/>
-                <x-form.input class="col-md-1" name='age' label='Age' type='number'/>
-                <x-form.select class="col-md-1" :options="$data=['F'=>'Female', 'M' => 'Male']" label="Sex" name='sex'/>
-                <x-form.select class="col-md-2"
+                <x-form.input class="col-md-4" name='fname' label='First Name' type='text' required='true'/>
+                <x-form.input class="col-md-4" name='mname' label='Middle Name' type='text' required='true'/>
+                <x-form.input class="col-md-4" name='lname' label='Last Name' type='text' required='true'/>
+                <x-form.input class="col-md-3" name='suffix' label='Suffix' type='text'/>
+                <x-form.input class="col-md-3" name='bod' label='Birth Date' type='text' inputClass='datepicker' placeholder="m/d/Y" required='true' inputId='datepicker'/>
+                <x-form.input class="col-md-3" name='age' label='Age' type='number' required='true'/>
+                <x-form.select class="col-md-3" :options="$data=['Female'=>'Female', 'Male' => 'Male']" label="Sex" name='sex' required='true'/>
+                <x-form.select class="col-md-2" required='true'
                     :options="$data=['Married'=>'Married', 'Single' => 'Single', 'Divorced' => 'Divorced', 'Widowed' => 'Widowed']"
                     label="Civil Status"
                     name='cstatus'
                 />
-                <x-form.select class="col-md-1"
+                <x-form.select class="col-md-2"
                     :options="$data=['1'=>1, '2' => 2, '3'=> 3, '4'=> 4, '5'=>5]"
                     label="Zone"
                     name='zone'
+                    required='true'
                 />
-                <x-form.input class="col-md-3" name='bplace' label='Birth Place' type='text'/>
-                <x-form.input class="col-md-2" name='cpnumber' label='Phone Number' type='text'/>
+                <x-form.input class="col-md-5" name='bplace' label='Birth Place' type='text' required='true'/>
+                <x-form.input class="col-md-3" name='cpnumber' label='Phone Number' type='text'/>
                 <x-form.input class="col-md-4" name='email' label='Email' type='email' placeholder="Optional"/>
 
                 {{-- addtional form elemements ( not component) --}}
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <label for="form-label">Other Options</label>
                     <div class="row">
                         <div class="col-4">
                             <div class="form-check form-check-inline py-2">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="pwd" value="1">
                                 <label class="form-check-label" for="inlineCheckbox1">PWD</label>
                             </div>
                         </div>
                         <div class="col-4">
                         <div class="form-check form-check-inline py-2">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="sc" value="1">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="senior" value="1">
                             <label class="form-check-label" for="inlineCheckbox2">Senior Citizen</label>
                         </div>
                         </div>
