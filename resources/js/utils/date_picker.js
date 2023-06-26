@@ -4,5 +4,5 @@ import $ from 'jquery'
 
 // find the datepicker input using class
 $('.datepicker').datepicker({
-    format: 'mm/dd/yyyy'
+    format: 'yyyy/mm/dd'
 });

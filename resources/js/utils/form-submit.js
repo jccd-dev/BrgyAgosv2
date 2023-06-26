@@ -21,7 +21,7 @@ class FormSubmit {
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                       toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -32,9 +32,19 @@ class FormSubmit {
                   Toast.fire({
                     icon: 'success',
                     title: res.data.success
+                  }).then(()=>{
+                    window.location.reload()
                   })
             }
         } catch (error) {
+            if(error.response?.status === 500) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Warning',
+                    text: `${error.response.data.errors} ${error.response.status}`,
+                })
+                return
+            }
             this.errorHanlder(error.response?.data?.errors)
         }
     }

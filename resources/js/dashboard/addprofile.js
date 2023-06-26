@@ -1,9 +1,10 @@
 import $ from 'jquery'
 import FormSubmit from '../utils/form-submit'
+import clearForm from '../utils/clearErr'
 const form = document.querySelector('#addProfile')
 const formElements = form.querySelectorAll('input, select')
 
-form.addEventListener('submit', async (event) => {
+form.addEventListener('submit', (event) => {
     event.preventDefault()
     let formData = new FormData(event.target)
 
@@ -20,30 +21,5 @@ exampleModal.addEventListener('hide.bs.modal', function (event) {
     });
 })
 
-// remove error message when user change the value,
-// but brings it back when user delete the value
-formElements.forEach(element => {
+clearForm(formElements)
 
-    // only for datepicker
-    element.addEventListener('focus', ()=>{
-        if(element.className == 'form-control datepicker'){
-            element.nextElementSibling.classList.add("d-none");
-        }
-    })
-    element.addEventListener('blur', ()=>{
-        if(element.className == 'form-control datepicker'){
-            if(element.value.trim() === ''){
-                element.nextElementSibling.classList.remove("d-none");
-            }
-        }
-    })
-    // only for datepicker
-
-    element.addEventListener('keydown', (e) => {
-        element.nextElementSibling.classList.add("d-none");
-        if(element.value.trim() === ''){
-            element.nextElementSibling.classList.remove("d-none");
-        }
-    })
-
-  })

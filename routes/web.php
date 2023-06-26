@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ImportExportProfile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Home;
 use App\Http\Controllers\Dashboard\Profiling;
@@ -26,4 +27,9 @@ Route::prefix('dashboard')->group(function(){
         Route::get('/profiling', 'render')->name('d-profiling');
         Route::post('/add-profile', 'add_profile')->name('d-profiling-add');
     });
+
+    Route::controller(ImportExportProfile::class)->group( function () {
+        Route::post('/import', 'import_excel_file')->name('d-import');
+        Route::get('/export', 'exportProfiles')->name('d-export');
+    } );
 });

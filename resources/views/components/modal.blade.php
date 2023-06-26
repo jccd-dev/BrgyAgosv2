@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'modal']) }} id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div {{ $attributes->merge(['class' => 'modal']) }} id="{{ $id }}" aria-labelledby="{{ $id }}Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

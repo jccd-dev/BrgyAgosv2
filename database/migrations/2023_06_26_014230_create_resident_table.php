@@ -13,7 +13,22 @@ return new class extends Migration
     {
         Schema::create('resident', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('fname');
+            $table->string('mname');
+            $table->string('lname');
+            $table->string('suffix');
+            $table->date('dob');
+            $table->tinyInteger('age');
+            $table->string('sex');
+            $table->string('cstatus');
+            $table->tinyInteger('zone');
+            $table->string('bplace');
+            $table->string('cpnumber')->nullable();
+            $table->string('email')->nullable();
+            $table->tinyInteger('pwd')->default(0);
+            $table->tinyInteger('senior')->default(0);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable();
         });
     }
 
