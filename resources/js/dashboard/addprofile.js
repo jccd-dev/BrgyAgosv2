@@ -8,7 +8,7 @@ form.addEventListener('submit', (event) => {
     event.preventDefault()
     let formData = new FormData(event.target)
 
-    let submit = new FormSubmit(formData, '/dashboard/add-profile', formElements)
+    let submit = new FormSubmit(formData, '/dashboard/add-profile', formElements, form)
     submit.submitForm()
 })
 

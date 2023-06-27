@@ -50,11 +50,24 @@ class Profiling extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $this->profilingModel->fill($validator->validated());
+        $profile_data = $validator->validated();
+        $profile_data['fname'] = ucwords($profile_data['fname']);
+        $profile_data['mname'] = ucwords($profile_data['mname']);
+        $profile_data['lname'] = ucwords($profile_data['lname']);
+
+        // dd($profile_data);
+        $this->profilingModel->fill($profile_data);
         if($this->profilingModel->save()){
             return response()->json(['success' => 'New Profile Inserted'], 200);
         }
 
         return response()->json(['errors' => 'Server Error'], 500);
+    }
+
+    public function get_all_profiles(){
+
+        $data = ProfilingModel::select('id','fname','mname','lname','suffix','age','sex','cstatus','zone','pwd','senior', 'deseased')->get();
+        // dd($data);
+        return response()->json(['users' => $data], 200);
     }
 }

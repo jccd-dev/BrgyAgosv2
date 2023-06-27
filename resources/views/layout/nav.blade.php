@@ -1,15 +1,23 @@
-<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-    <div class="d-flex flex-column pt-4 text-white min-vh-100">
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-fixed vh-100">
+    <div class="d-flex flex-column pt-4 text-white vh-100">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-4 d-none d-sm-inline text-uppercase">Menu</span>
         </a>
         <ul class="nav nav-pills flex-column mb-auto text-uppercase">
             <li>
-                <a href="#" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white actives">
-                    <i class="fa-solid fa-house ps-2"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Home</span></a>
+                <a href="{{ route('d-home')}}" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white
+                    @if (request()->routeIs('d-home'))
+                        actives
+                    @endif
+                ">
+                <i class="fa-solid fa-house ps-2"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Home</span></a>
             </li>
             <li>
-                <a href="#" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white">
+                <a href="{{ route('d-profiling')}}" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white
+                    @if (request()->routeIs('d-profiling'))
+                    actives
+                    @endif
+                ">
                     <i class="fa-solid fa-users ps-2"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Profiles</span></a>
             </li>
             <li class="dropdown">

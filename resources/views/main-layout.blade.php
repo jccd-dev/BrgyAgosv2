@@ -20,11 +20,12 @@
             @include('layout.nav')
 
             {{-- page content --}}
-            <div class="col">
+            <div class="col-md-9 col-lg-10 ms-md-auto">
                 @yield('content')
             </div>
         </div>
     </div>
+
 </body>
 </html>
 

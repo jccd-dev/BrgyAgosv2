@@ -12,7 +12,8 @@ export default defineConfig({
     resolve: {
         alias: {
             '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
-            '~date-picker': path.resolve(__dirname, 'node_modules/bootstrap-datepicker')
+            '~date-picker': path.resolve(__dirname, 'node_modules/bootstrap-datepicker'),
+            '~datatable' : path.resolve(__dirname, 'node_modules/datatables.net-bs5')
         }
     }
 });

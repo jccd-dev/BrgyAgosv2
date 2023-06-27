@@ -1,4 +1,4 @@
-<form class="row g-4" id={{$id}} method="POST" enctype="multipart/form-data">
+<form {{ $attributes(['class'=>"row gy-4"]) }} id={{$id}} method="POST" enctype="multipart/form-data">
     {{ $slot }}
 
     <div>

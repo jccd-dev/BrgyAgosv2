@@ -4,6 +4,7 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~date-picker/dist/css/bootstrap-datepicker.css';
+@import '~datatable/css/dataTables.bootstrap5.min.css';
 
 
 // Remove border on focused inputs
@@ -26,4 +27,13 @@
 #err-msg {
     font-size: small;
 }
+
+// SCSS
+tr{
+    cursor:  pointer !important;
+}
+.custom-input{
+    width: 90px !important;
+}
+
 

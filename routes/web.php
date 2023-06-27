@@ -26,6 +26,7 @@ Route::prefix('dashboard')->group(function(){
     Route::controller(Profiling::class)->group(function () {
         Route::get('/profiling', 'render')->name('d-profiling');
         Route::post('/add-profile', 'add_profile')->name('d-profiling-add');
+        Route::get('/get-profile', 'get_all_profiles')->name('d-getProfile');
     });
 
     Route::controller(ImportExportProfile::class)->group( function () {

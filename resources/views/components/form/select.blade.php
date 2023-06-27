@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => '']) }}>
-    <label for="input{{ $name }}" class="form-label">
+    <label for="input{{ $name }}" class="">
         {{$label}}
         @if ($required)
             <i class="text-danger p-1">*</i>

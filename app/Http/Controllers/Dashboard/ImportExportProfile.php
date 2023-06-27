@@ -93,6 +93,12 @@ class ImportExportProfile extends Controller
         }
     }
 
+    /**
+     * @uses EXPORTPROFILES
+     * @return :excel file
+     * function for exporting all profile data from database into excel file
+     * the excel file will be automatically downloaded of use system
+     */
     public function exportProfiles(){
 
         // spreadsheet object

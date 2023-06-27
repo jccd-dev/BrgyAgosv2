@@ -1,15 +1,20 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { updateDataTableData } from './datatable'
+import get_profile from '../dashboard/getprofile';
+import $ from 'jquery'
+import * as bootstrap from 'bootstrap';
 
 // set the csrf token
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
 class FormSubmit {
-    constructor(formData, end_point, formElements){
+    constructor(formData, end_point, formElements, form = null){
         this.formData = formData
         this.end_point = end_point
         this.formElements = formElements
+        this.form = form
     }
 
     // submit form to the server/backend
@@ -17,6 +22,11 @@ class FormSubmit {
         try {
             let res = await axios.post(this.end_point, this.formData)
             if(res.status === 200){
+                var modalElement = document.querySelector('#exampleModal');
+                var modal = bootstrap.Modal.getInstance(modalElement);
+
+                modal.hide();
+                this.form.reset()
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -33,7 +43,12 @@ class FormSubmit {
                     icon: 'success',
                     title: res.data.success
                   }).then(()=>{
-                    window.location.reload()
+                        // let dataTable = $('#example').DataTable();
+                        // dataTable.clear().destroy();
+                        // $('#example').empty();
+                        get_profile().then(data => {
+                           updateDataTableData(data)
+                        })
                   })
             }
         } catch (error) {

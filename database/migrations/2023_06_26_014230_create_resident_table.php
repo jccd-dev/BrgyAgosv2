@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');
-            $table->string('suffix');
+            $table->string('suffix')->nullable();
             $table->date('dob');
             $table->tinyInteger('age');
             $table->string('sex');
@@ -25,10 +25,14 @@ return new class extends Migration
             $table->string('bplace');
             $table->string('cpnumber')->nullable();
             $table->string('email')->nullable();
-            $table->tinyInteger('pwd')->default(0);
-            $table->tinyInteger('senior')->default(0);
+            $table->string('pwd')->nullable();
+            $table->string('senior')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable();
+            $table->index('lname');
+            $table->index('pwd');
+            $table->index('zone');
+
         });
     }
 
