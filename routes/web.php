@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Dashboard\ImportExportProfile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Home;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Dashboard\Profiling;
+use App\Http\Controllers\Dashboard\ImportExportProfile;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,11 @@ use App\Http\Controllers\Dashboard\Profiling;
 |
 */
 
-Route::get('/', function () {
-    return view('main-layout');
-});
+Route::get('/', [AdminController::class, 'index'])->name('base');
+Route::post('/login', [AdminController::class, 'login'])->name('login');
 
-Route::prefix('dashboard')->group(function(){
-    Route::get('/home', [Home::class, 'render'])->name('d-home');
+Route::middleware('admin.auth')->prefix('dashboard')->group(function(){
+    Route::get('/', [Home::class, 'render'])->name('d-home');
     // Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
     Route::controller(Profiling::class)->group(function () {
         Route::get('/profiling', 'render')->name('d-profiling');
@@ -33,4 +33,6 @@ Route::prefix('dashboard')->group(function(){
         Route::post('/import', 'import_excel_file')->name('d-import');
         Route::get('/export', 'exportProfiles')->name('d-export');
     } );
+
+    Route::get('/logout', [AdminController::class, 'destroy'])->name('d-logout');
 });
