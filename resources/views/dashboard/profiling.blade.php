@@ -16,7 +16,10 @@
         </button>
     </div>
     <div class="col-auto">
-        <a href="{{ route('d-export') }}" class="btn btn-success">Export Profile</a>
+        {{-- <a href="{{ route('d-export') }}" class="btn btn-success">Export Profile</a> --}}
+        <button type="button" class="btn btn-success" id="export">
+            Export Profiles
+        </button>
     </div>
 </div>
 
@@ -101,7 +104,7 @@
                     </div>
                     <div class="col-3">
                         <div class="form-check form-check-inline py-2">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="senior" value="decd">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="deseased" value="decd">
                             <label class="form-check-label" for="inlineCheckbox2">Deceased</label>
                         </div>
                     </div>
@@ -112,4 +115,5 @@
             </x-slot>
         </x-form-modal>
     </x-modal>
+    @vite(['resources/js/pages/profilepage.js'])
 @endsection

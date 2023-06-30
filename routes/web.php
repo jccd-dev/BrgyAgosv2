@@ -27,6 +27,9 @@ Route::middleware('admin.auth')->prefix('dashboard')->group(function(){
         Route::get('/profiling', 'render')->name('d-profiling');
         Route::post('/add-profile', 'add_profile')->name('d-profiling-add');
         Route::get('/get-profile', 'get_all_profiles')->name('d-getProfile');
+        Route::get('/update/{id}', 'update_page')->name('d-update');
+        Route::post('/update-profile', 'update_profile')->name('d-update-profile');
+        Route::delete('/delete-profile/{id}', 'delete_profile')->name('d-delete-profile');
     });
 
     Route::controller(ImportExportProfile::class)->group( function () {

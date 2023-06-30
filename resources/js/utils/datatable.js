@@ -2,7 +2,6 @@ import $ from 'jquery';
 import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
 import 'datatables.net/js/jquery.dataTables'
 import 'datatables.net-bs5/js/dataTables.bootstrap5'
-import axios from 'axios';
 
 export function initializeDataTable(pdata){
     let dataTable
@@ -19,9 +18,37 @@ export function initializeDataTable(pdata){
             { data: 'cstatus'},
             { data: 'zone'},
             { data: 'age'},
-            { data: 'pwd'},
-            { data: 'senior'},
-            { data: 'deseased'}
+            {
+                data: null,
+                render: function (data, type, row) {
+                    if(row.pwd != null){
+                        return `<i class="fa-solid fa-circle text-teal"></i>`;
+                    }
+                    return ''
+                },
+                className: 'text-center'
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    if(row.senior != null){
+                        return `<i class="fa-solid fa-circle text-teal"></i>`;
+                    }
+                    return ''
+                },
+                className: 'text-center'
+            },
+            // { data: 'deseased'}
+            {
+                data: null,
+                render: function (data, type, row) {
+                    if(row.deseased != null){
+                        return `<i class="fa-solid fa-circle text-teal"></i>`;
+                    }
+                    return ''
+                },
+                className: 'text-center'
+            },
         ],
         columnDefs :[
             {width: '260px', target: 0},
@@ -53,6 +80,17 @@ export function initializeDataTable(pdata){
         $(this).addClass('table-primary');
       }).on('mouseleave', 'tr', function () {
         $(this).removeClass('table-primary');
+      });
+
+      dataTable.on('dblclick', 'tr', function () {
+        // Get the data of the clicked row
+        var rowData = dataTable.row(this).data();
+
+        // Assuming you have a unique identifier for each row, e.g., 'id'
+        var rowId = rowData.id;
+
+        // Perform the navigation to the full page using the rowId
+        window.location.href = '/dashboard/update/' + rowId; // Replace with your actual full page URL
       });
 }
 export function updateDataTableData(data){

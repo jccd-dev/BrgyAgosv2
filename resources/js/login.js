@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import './bootstrap';
 
 let form = document.querySelector('#loginForm')
-let inputs = form.querySelector('input')
+let inputs = form.querySelectorAll('input, select')
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault()

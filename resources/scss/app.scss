@@ -2,9 +2,19 @@
 
 @import '_custom';
 
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+$theme-colors: map-merge((
+    "pink": $pink,
+    "darkBlue": $blue-500,
+    'teal': $teal
+),$theme-colors);
+
 @import '~bootstrap/scss/bootstrap';
 @import '~date-picker/dist/css/bootstrap-datepicker.css';
 @import '~datatable/css/dataTables.bootstrap5.min.css';
+
+
 
 
 // Remove border on focused inputs
@@ -34,6 +44,15 @@ tr{
 }
 .custom-input{
     width: 90px !important;
+}
+.box2{
+    height: 100%;
+}
+
+.img{
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 

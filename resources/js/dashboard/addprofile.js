@@ -1,8 +1,7 @@
-import $ from 'jquery'
 import FormSubmit from '../utils/form-submit'
 import clearForm from '../utils/clearErr'
 const form = document.querySelector('#addProfile')
-const formElements = form.querySelectorAll('input, select')
+const formElements = form.querySelectorAll('input, select');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()

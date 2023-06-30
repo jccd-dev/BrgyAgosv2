@@ -23,7 +23,8 @@ class ProfilingModel extends Model
         'cpnumber',
         'email',
         'pwd',
-        'senior'
+        'senior',
+        'deseased'
     ];
 
 

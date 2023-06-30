@@ -64,6 +64,44 @@ class FormSubmit {
         }
     }
 
+    async updateProfile(){
+        try {
+            let res = await axios.post(this.end_point, this.formData)
+            if(res.status === 200){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+
+                  Toast.fire({
+                    icon: 'success',
+                    title: res.data.success
+                  }).then(()=>{
+                        get_profile().then(data => {
+                           updateDataTableData(data)
+                        })
+                  })
+            }
+        } catch (error) {
+            if(error.response?.status === 500) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Warning',
+                    text: `${error.response.data.errors} ${error.response.status}`,
+                })
+                return
+            }
+            this.errorHanlder(error.response?.data?.errors)
+        }
+    }
+
     // display the error message under the input and select if any
     errorHanlder(err){
         for (const key in err) {

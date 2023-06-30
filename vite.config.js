@@ -5,7 +5,11 @@ import path from 'path'
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.js'],
+            input: [
+                'resources/scss/app.scss',
+                'resources/js/app.js',
+                'resources/js/pages/profilepage.js'
+            ],
             refresh: true,
         }),
     ],

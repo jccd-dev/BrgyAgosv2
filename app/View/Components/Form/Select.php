@@ -15,13 +15,15 @@ class Select extends Component
         public string $name,
         public string $label,
         public array $options = [],
-        public ?bool $required = null
+        public ?bool $required = null,
+        public null|string|int $value = null
     )
     {
         $this->name = $name;
         $this->label = $label;
         $this->options = $options;
         $this->required = $required;
+        $this->value = $value;
     }
 
     /**

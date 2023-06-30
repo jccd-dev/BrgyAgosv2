@@ -6,7 +6,7 @@ import moment from 'moment'
 
 // find the datepicker input using class
 $('.datepicker').datepicker({
-    format: 'yyyy/mm/dd'
+    format: 'yyyy-mm-dd'
 })
 
 $('.datepicker').on('changeDate, change', (event)=>{

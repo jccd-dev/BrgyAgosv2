@@ -6,10 +6,17 @@
         @endif
     </label>
     <select id="input{{ $name }}" name="{{ $name }}" class="form-select">
-        <option selected value="">..</option>
+        @if (!$value)
+            <option selected value="">..</option>
+        @endif
         {{-- loop the option provided --}}
         @foreach ($options as $key => $val)
-            <option value="{{ $val }}">{{ $key }}</option>
+            @if ($value == $val)
+                <option selected value="{{ $val }}">{{ $key }}</option>
+            @else
+                <option value="{{ $val }}">{{ $key }}</option>
+            @endif
+
         @endforeach
     </select>
     <span class="text-danger d-none" id="err-msg"></span>
