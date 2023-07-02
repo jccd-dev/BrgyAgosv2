@@ -51,13 +51,14 @@ export function initializeDataTable(pdata){
             },
         ],
         columnDefs :[
-            {width: '260px', target: 0},
-            {width: '200px', target: 2},
-            {width: '80px', target: 3},
-            {width: '50px', target: 4},
-            {width: '55px', target: 5},
-            {width: '55px', target: 6},
-            {width: '70px', target: 7},
+            {width: '270px', target: 0}, // name
+            {width: '60px', target: 1}, // sex
+            {width: '100px', target: 2}, //civil status
+            {width: '70px', target: 3}, //zone
+            {width: '50px', target: 4}, //age
+            {width: '55px', target: 5}, //pwd
+            {width: '55px', target: 6},// senior
+            {width: '70px', target: 7}, //other
         ]
 
 

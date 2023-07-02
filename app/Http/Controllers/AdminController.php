@@ -17,6 +17,9 @@ class AdminController extends Controller
         return view('adminl-login');
     }
 
+    public function renderSetting(){
+        return view('dashboard.setting');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -43,9 +46,27 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'username'      => 'required|alpha_num',
+            'oldpassword'   => 'required',
+            'newpass'       => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'
+        ]);
+
+        $admin_user = Admin::find(Auth::user()->id);
+        if(!Hash::check($credentials['oldpassword'], $admin_user->password)) {
+            return response()->json(['errors' => ['oldpassword' => 'Old Password Not match']], 420);
+        }
+
+        $admin_user->username = $credentials['username'];
+        $admin_user->password = Hash::make($credentials['newpass']);
+
+        if(!$admin_user->save()){
+            return response()->json(['errors' => 'Try again later'], 420);
+        }
+
+        return response()->json(['success' => 'Admin Credentials Updated'], 200);
     }
 
     /**

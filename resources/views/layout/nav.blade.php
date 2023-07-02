@@ -37,11 +37,11 @@
                 <span class="d-none d-sm-inline mx-2 fw-bold">Admin</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-white text-small text-dark shadow w-100">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="{{ route('d-admin.setting') }}">Settings</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="{{ route('d-logout') }}">Sign out</a></li>
+                <li><a class="dropdown-item" href="{{ route('d-admin.logout') }}">Sign out</a></li>
             </ul>
         </div>
     </div>

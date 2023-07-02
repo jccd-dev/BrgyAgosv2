@@ -43,9 +43,7 @@ class FormSubmit {
                     icon: 'success',
                     title: res.data.success
                   }).then(()=>{
-                        // let dataTable = $('#example').DataTable();
-                        // dataTable.clear().destroy();
-                        // $('#example').empty();
+
                         get_profile().then(data => {
                            updateDataTableData(data)
                         })

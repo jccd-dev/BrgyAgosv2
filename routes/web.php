@@ -20,7 +20,7 @@ use App\Http\Controllers\Dashboard\ImportExportProfile;
 Route::get('/', [AdminController::class, 'index'])->name('base');
 Route::post('/login', [AdminController::class, 'login'])->name('login');
 
-Route::middleware('admin.auth')->prefix('dashboard')->group(function(){
+Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
     Route::get('/', [Home::class, 'render'])->name('d-home');
     // Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
     Route::controller(Profiling::class)->group(function () {
@@ -37,5 +37,9 @@ Route::middleware('admin.auth')->prefix('dashboard')->group(function(){
         Route::get('/export', 'exportProfiles')->name('d-export');
     } );
 
-    Route::get('/logout', [AdminController::class, 'destroy'])->name('d-logout');
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/setting', 'renderSetting')->name('d-admin.setting');
+        Route::post('/update-admin', 'update')->name('d-admin.update');
+        Route::get('/logout', 'destroy')->name('d-admin.logout');
+    });
 });
