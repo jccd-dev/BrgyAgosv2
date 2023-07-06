@@ -14,9 +14,6 @@ $theme-colors: map-merge((
 @import '~date-picker/dist/css/bootstrap-datepicker.css';
 @import '~datatable/css/dataTables.bootstrap5.min.css';
 
-
-
-
 // Remove border on focused inputs
 .form-control {
     &:focus {
@@ -53,6 +50,14 @@ tr{
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.input-group-prepend .input-group-text {
+    border-radius: 0;
+  }
+
+  .input-group-prepend .input-group-text i {
+    margin-top: 4px;
 }
 
 

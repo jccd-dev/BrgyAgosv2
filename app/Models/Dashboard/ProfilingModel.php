@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Models\Dashboard;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProfilingModel extends Model
 {
@@ -26,6 +28,10 @@ class ProfilingModel extends Model
         'senior',
         'deseased'
     ];
+
+    public function family_members(): HasOne {
+        return $this->hasOne(FamilyMembers::class, 'resident_id', 'id');
+    }
 
 
 }

@@ -1,0 +1,81 @@
+import $ from 'jquery'
+import axios from 'axios'
+
+$(()=> {
+    var searchInput = $("#searchInput");
+  var optionsContainer = $("#optionsContainer");
+
+  function fetchOptions(searchTerm) {
+    axios.get('/dashboard/get-option', { params: { search: searchTerm } })
+      .then(function(response) {
+        optionsContainer.empty();
+        response.data.forEach(function(option) {
+          var optionElement = $('<a class="dropdown-item" href="#" data-id="' + option.id + '">' + option.fname + '</a>');
+          optionElement.on('click', function() {
+            var selectedName = $(this).text();
+            var selectedId = $(this).data('id');
+            searchInput.val(selectedName);
+            console.log("Selected Name:", selectedName);
+            console.log("Selected ID:", selectedId);
+            optionsContainer.hide();
+          });
+          optionsContainer.append(optionElement);
+        });
+
+        if (response.data.length > 0) {
+            optionsContainer.show();
+          } else {
+            optionsContainer.hide();
+          }
+      })
+      .catch(function(error) {
+        // Handle error case
+        console.error(error);
+      });
+  }
+
+  searchInput.on("input", function() {
+    var searchTerm = searchInput.val();
+    console.log(searchTerm)
+    fetchOptions(searchTerm);
+
+  });
+
+ // Show the dropdown menu when the button is clicked
+ $(".dropdown-toggle").on("click", function() {
+    optionsContainer.toggle();
+  });
+
+  // Hide the dropdown menu when clicking outside
+  $('.dropdown-toggle').on("click", function(event) {
+    var target = $(event.target);
+    if (!target.hasClass("dropdown-toggle") && !target.hasClass("dropdown-item")) {
+      $(".dropdown-menu").hide();
+    }
+  });
+})
+
+
+// update where ever the new members is appended
+    // const targetNode = $('.member')[0];
+    // const observer = new MutationObserver(function(mutationsList, observer) {
+    //     // Iterate through each mutation
+    //     for (let mutation of mutationsList) {
+    //       // Check if new nodes were added
+    //       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+    //         // Iterate through the added nodes and update them or perform any other actions
+    //         $(mutation.addedNodes).each(function() {
+    //             const inputs  = $(this).find('#members')
+
+    //             let search = new SearchInputs(inputs)
+    //             search.onInput()
+    //             search.showOptions()
+    //             search.hideOptions()
+    //         });
+    //       }
+    //     }
+    //   });
+
+    //   // Configure and start observing the target node for mutations
+    // const config = { childList: true, subtree: true };
+    // observer.observe(targetNode, config);

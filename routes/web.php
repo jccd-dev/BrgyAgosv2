@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Home;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Dashboard\Profiling;
+use App\Http\Controllers\Dashboard\FamiliesController;
 use App\Http\Controllers\Dashboard\ImportExportProfile;
 
 /*
@@ -30,12 +31,18 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
         Route::get('/update/{id}', 'update_page')->name('d-update');
         Route::post('/update-profile', 'update_profile')->name('d-update-profile');
         Route::delete('/delete-profile/{id}', 'delete_profile')->name('d-delete-profile');
+        Route::get('/get-option', 'get_a_profile');
     });
 
     Route::controller(ImportExportProfile::class)->group( function () {
         Route::post('/import', 'import_excel_file')->name('d-import');
         Route::get('/export', 'exportProfiles')->name('d-export');
     } );
+
+    Route::controller(FamiliesController::class)->group( function (){
+        Route::get('/families', 'render')->name('d-family');
+        Route::post('/add-family', 'add_family')->name('d-add.family');
+    });
 
     Route::controller(AdminController::class)->group(function () {
         Route::get('/setting', 'renderSetting')->name('d-admin.setting');

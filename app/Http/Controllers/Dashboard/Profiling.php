@@ -125,4 +125,20 @@ class Profiling extends Controller
         // dd($data);
         return response()->json(['users' => $data], 200);
     }
+
+    public function get_a_profile(Request $request){
+
+        $searchTerm = $request->input('search');
+        $options = null;
+        if($searchTerm != null){
+            $options = ProfilingModel::query()
+                ->when($searchTerm, function ($query, $searchVal){
+                    $query->select('id', 'fname', 'lname', 'mname')
+                        ->where('fname', 'LIKE', '%'.$searchVal.'%')
+                        ->orWhere('mname', 'LIKE', '%'.$searchVal.'%')
+                        ->orWhere('lname', 'LIKE', '%'.$searchVal.'%');
+                })->get();
+        }
+        return response()->json($options);
+    }
 }

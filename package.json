@@ -15,8 +15,10 @@
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.0",
         "bootstrap-datepicker": "^1.10.0",
+        "bootstrap-select": "^1.13.18",
         "datatables.net": "^1.13.4",
         "datatables.net-bs5": "^1.13.4",
+        "jquery": "^3.7.0",
         "moment": "^2.29.4",
         "sweetalert2": "^11.7.12"
     }

@@ -20,6 +20,14 @@
                 ">
                     <i class="fa-solid fa-users ps-2"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Profiles</span></a>
             </li>
+            <li>
+                <a href="{{ route('d-family')}}" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white
+                    @if (request()->routeIs('d-family'))
+                    actives
+                    @endif
+                ">
+                    <i class="fa-solid fa-users ps-2"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Families</span></a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="nav-link px-0 align-middle border-bottom border-white rounded-0 text-white" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fs-4 bi-table"></i> <span class="ms-2 d-none d-sm-inline fw-bold">Certificates</span></a>
