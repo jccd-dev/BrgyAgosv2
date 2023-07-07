@@ -22,7 +22,7 @@ const newCol = `
                     </div>
                     <div class="col-md-4">
                     <select class="form-select" aria-label="Default select example" id="roleSelect">
-                            <option selected value=''>..Role</option>
+                            <option selected value=''>..Role (empty)</option>
                             <option value="Head">Family Head</option>
                             <option value="Husband">Husband/Father</option>
                             <option value="Wife">Wife/Mother</option>
@@ -83,36 +83,43 @@ $(()=>{
                 search.showOptions()
                 search.hideOptions()
 
-                $('#save').on('click', function(e){
-                    e.preventDefault()
 
-                    fam_name = $('#family_name').val()
-                    cr = $('#cr').val()
-                    electricity = $('#electricity').val()
-                    water = $('#water').val()
+                $('#save').on('click', function(e) {
+                    e.preventDefault();
 
-                    const searchInputs = inputs.find('#searchInput')
+                    fam_name = $('#family_name').val();
+                    cr = $('#cr').val();
+                    electricity = $('#electricity').val();
+                    water = $('#water').val();
+
+                    const searchInputs = inputs.find('#searchInput');
                     searchInputs.each(function(index) {
-                        val = $(this).val()
+                        val = $(this).val();
                         inputVal = $(this).data("id");
                         roleVal = roles.eq(index).val();
+                        let select = $(this).closest(".search-inputs").find('#roleSelect')
+                        // console.log(inputVal, roleVal);
 
-                        if(inputVal && roleVal) {
+                        if (inputVal && roleVal !== '') {
+                            $(this).removeClass('border-danger')
+                            select.removeClass('border-danger')
                             searchData[inputVal] = roleVal;
-                            return
                         }
-                        submitBtn.attr('disabled', true)
                     });
 
-                    if(!isEmptyObject(searchData) && cr != '' && fam_name != '' && water != '' && electricity != '' && val != ''){
-                        submitBtn.removeAttr('disabled')
-                        return
+                    if (cr !== '' && fam_name !== '' && water !== '' && electricity !== '') {
+                        if (!isEmptyObject(searchData)) {
+                            submitBtn.removeAttr('disabled');
+                        } else {
+                            submitBtn.attr('disabled', true);
+                        }
+                    } else {
+                        submitBtn.attr('disabled', true);
                     }
 
-                    submitBtn.attr('disabled', true)
+                });
 
-                    console.log(searchData)
-                })
+
 
                 $(this).find('#searchInput, #roleSelect').each(function(){
                     $(this).on('change, input', function(){
@@ -120,14 +127,32 @@ $(()=>{
                             // console.log( )
                             delete searchData[$(this).data("id")]
                             $(this).data("id", '')
+                            if(!$(this).data("id")){
+                                $(this).addClass('border-danger')
+
+                            }
+                            else{
+                                $(this).removeClass('border-danger')
+                            }
+
                         }
 
                         if(this.tagName == 'SELECT'){
                             const searchInput = $(this).closest(".search-inputs").find('#searchInput')
+                            $(this).addClass('border-danger')
                             const id = searchInput.data('id')
-                            console.log(id)
+                            // console.log(id)
                             if(id != null){
                                 delete searchData[id]
+                            }
+
+                            if(!$(this).val()){
+                                $(this).addClass('border-danger')
+
+                            }
+                            else{
+                                $(this).removeClass('border-danger')
+                                $('#alert').addClass('d-none')
                             }
                         }
                         submitBtn.attr('disabled', true)
@@ -156,13 +181,15 @@ $(()=>{
         submitBtn.attr('disabled', true)
     });
 
-    submitBtn.on('click', function(){
+
+    submitBtn.on('click', function(e){
+
         const data = {
             familydata: {
-                'famName': fam_name,
-                'cr': cr,
-                'electrivity': electricity,
-                'water' : water
+                'family_name': fam_name,
+                'with_Cr': cr,
+                'with_electricity': electricity,
+                'water_source' : water
             },
             members : searchData
         }
@@ -170,6 +197,9 @@ $(()=>{
             .then( (response) => {
 
             })
+
+
+
     })
 
     const findIndexByValue = (obj, value) => {

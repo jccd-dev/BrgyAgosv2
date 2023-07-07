@@ -26,6 +26,7 @@ class SearchInputs{
                     self.searchInput.val(selectedName); // Use 'self' instead of 'this'
                     let selected_id = $(this).data('id');
                     self.searchInput.data('id', selected_id)
+                    self.searchInput.removeClass('border-danger')
                     self.optionContainer.fadeOut(400);
                   });
                   this.optionContainer.append(optionEl);
