@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+use App\Models\Dashboard\Families;
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\ProfilingModel;
 
@@ -20,7 +21,8 @@ class Home extends Controller{
             'female'    => $profileModel::where('sex', 'Female')->count(),
             'male'      => $profileModel::where('sex', 'Male')->count(),
             'senior'    => $profileModel::where('senior', 'sc')->count(),
-            'pwd'       => $profileModel::where('pwd', 'pwd')->count()
+            'pwd'       => $profileModel::where('pwd', 'pwd')->count(),
+            'families'  => Families::all()->count()
         ];
     }
 }

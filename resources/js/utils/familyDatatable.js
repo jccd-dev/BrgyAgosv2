@@ -26,12 +26,12 @@ export function initializeDataTable(fdata){
       });
 
       $('#example_length').parent('.col-sm-12').removeClass('col-sm-12 col-md-6').addClass('col-sm-6 col-md-4')
-      $('#example_filter').parent('.col-sm-12').removeClass('col-sm-12 col-md-6').addClass('col')
+      $('#example_filter').parent('.col-sm-12').removeClass('col-sm-12 col-md-6').addClass('col justify-content-end')
 
       // Add filter input
-      $('#example_filter').append('<input type="text" id="CR-filter" class="form-control form-control-sm" placeholder="Name" aria-controls="example">');
-      $('#example_filter').append('<input type="text" id="electricity-filter" class="form-control form-control-sm custom-input" placeholder="Zone" aria-controls="example">');
-      $('#example_filter').append('<input type="text" id="water-filter" class="form-control form-control-sm custom-input" placeholder="Zone" aria-controls="example">');
+      $('#example_filter').append('<input type="text" id="CR-filter" class="form-control form-control-sm custom-input" placeholder="CR" aria-controls="example">');
+      $('#example_filter').append('<input type="text" id="electricity-filter" class="form-control form-control-sm custom-input" placeholder="Electricity" aria-controls="example">');
+      $('#example_filter').append('<input type="text" id="water-filter" class="form-control form-control-sm custom-input" placeholder="Water" aria-controls="example">');
 
       // Apply filter on keyup
       $('#CR-filter').on('keyup', function () {

@@ -60,7 +60,7 @@
                     <div class="w-75 p-4">
                         <div class="d-flex flex-column">
                             <span class="border-bottom">Families</span>
-                            <span class="fs-1">200</span>
+                            <span class="fs-1">{{$families}}</span>
                         </div>
                     </div>
                 </div>

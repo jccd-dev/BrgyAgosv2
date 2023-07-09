@@ -14,11 +14,11 @@ const newCol = `
                         <div class="form-group" id="members">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                <button class="btn btn-secondary dropdown-toggle" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle rounded-end-0" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Option
                                 </button>
                                 </div>
-                                <input type="text" class="form-control" id="searchInput" data-id="" placeholder="Search...">
+                                <input type="text" class="form-control rounded-end" id="searchInput" data-id="" placeholder="Search...">
                                 <div class="dropdown-menu w-100 mt-5" id="optionsContainer">
                                 <!-- Options will be dynamically populated here -->
                                 </div>
@@ -45,6 +45,7 @@ const newCol = `
         `
 
 $(()=>{
+
     // display all families in datatable
     get_families().then(data => {
         initializeDataTable(data)

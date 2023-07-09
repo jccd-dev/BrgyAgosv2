@@ -49,7 +49,9 @@ deleteRes.addEventListener('click', (e) => {
                     'Deleted!',
                     'Your file has been deleted.',
                     'success'
-                )
+                ).then(()=>{
+                    window.location.href = '/dashboard/profiling'
+                })
             })
             .catch(err => {
                 Swal.fire({

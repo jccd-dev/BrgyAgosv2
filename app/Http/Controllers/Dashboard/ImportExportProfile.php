@@ -110,7 +110,7 @@ class ImportExportProfile extends Controller
             'First Name', 'Middle Name', 'Last Name',
             'Suffix', 'Date of Birth', 'Age', 'Sex',
             'Civil Status', 'Zone', 'Birth Place', 'Contact Number',
-            'Email', 'PWD', 'Senior'
+            'Email', 'PWD', 'Senior', 'Deseased'
         ], null, 'A1');
 
         ProfilingModel::select('fname','mname','lname','suffix','dob','age','sex','cstatus','zone','bplace','cpnumber','email','pwd','senior')
@@ -132,7 +132,8 @@ class ImportExportProfile extends Controller
                         $item->cpnumber,
                         $item->email,
                         $item->pwd ?? 0,
-                        $item->senior ?? 0
+                        $item->senior ?? 0,
+                        $item->deseased ?? 0
                     ];
 
                     $sheet->fromArray($rowData, null, 'A'. $next_row);

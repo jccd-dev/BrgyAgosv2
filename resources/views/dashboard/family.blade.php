@@ -76,7 +76,7 @@
                 </div>
                 {{-- default should not delete --}}
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-success" id="addNewInput"><i class="fa-solid fa-plus"></i></button>
+                    <button type="button" class="btn btn-success" id="addNewInput" data-bs-toggle="tooltip" data-bs-placement="right" title="Add Row/Members"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
         </div>

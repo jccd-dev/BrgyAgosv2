@@ -11,11 +11,11 @@ const newCol = `
                         <div class="form-group" id="members">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                <button class="btn btn-secondary dropdown-toggle" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle rounded-end-0" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Option
                                 </button>
                                 </div>
-                                <input type="text" class="form-control" id="searchInput" data-id="" placeholder="Search...">
+                                <input type="text" class="form-control rounded-end" id="searchInput" data-id="" placeholder="Search...">
                                 <div class="dropdown-menu w-100 mt-5" id="optionsContainer">
                                 <!-- Options will be dynamically populated here -->
                                 </div>
@@ -183,7 +183,7 @@ $(document).on("click", ".remove-input", function() {
             if(id != null && id != ''){
                 deletedData.push(id)
             }
-            $(this).closest(".search-inputs").fadeOut(2000,()=>{
+            $(this).closest(".search-inputs").fadeOut(1000,()=>{
                 $(this).closest(".search-inputs").remove()
                 setTimeout(()=>{
                     Swal.fire(
@@ -191,7 +191,7 @@ $(document).on("click", ".remove-input", function() {
                     'Your file has been deleted.',
                     'success'
                     )
-                }, 500)
+                }, 300)
 
             });
             submitBtn.attr('disabled', true)
@@ -200,7 +200,7 @@ $(document).on("click", ".remove-input", function() {
         console.log(deletedData);
         })
     }else{
-        $(this).closest(".search-inputs").fadeOut(2000,()=>{
+        $(this).closest(".search-inputs").fadeOut(1000,()=>{
             $(this).closest(".search-inputs").remove()
         });
     }
@@ -327,11 +327,11 @@ const appendMembers = () =>{
                             <div class="form-group" id="members">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                    <button class="btn btn-secondary dropdown-toggle" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown-toggle rounded-end-0" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Option
                                     </button>
                                     </div>
-                                    <input type="text" class="form-control" id="searchInput" data-id="${member.id}" placeholder="Search..." value="${name}">
+                                    <input type="text" class="form-control rounded-end" id="searchInput" data-id="${member.id}" placeholder="Search..." value="${name}">
                                     <div class="dropdown-menu w-100 mt-5" id="optionsContainer">
                                     <!-- Options will be dynamically populated here -->
                                     </div>
