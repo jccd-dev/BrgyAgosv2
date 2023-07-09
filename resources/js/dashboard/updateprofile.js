@@ -1,5 +1,5 @@
 import FormSubmit from '../utils/form-submit'
-import clearForm from '../utils/clearErr'
+import {clearForm} from '../utils/clearErr'
 const form = document.querySelector('#updateProfile')
 const formElements = form.querySelectorAll('input, select');
 const button = form.querySelector('.submit')

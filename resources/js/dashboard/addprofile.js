@@ -1,5 +1,5 @@
+import { clearForm } from '../utils/clearErr';
 import FormSubmit from '../utils/form-submit'
-import clearForm from '../utils/clearErr'
 const form = document.querySelector('#addProfile')
 const formElements = form.querySelectorAll('input, select');
 

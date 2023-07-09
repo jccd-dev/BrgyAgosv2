@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { updateDataTableData } from './datatable'
-import get_profile from '../dashboard/getprofile';
+import { get_profile } from '../dashboard/get-data';
 import $ from 'jquery'
 import * as bootstrap from 'bootstrap';
 
@@ -111,8 +111,6 @@ class FormSubmit {
             });
         }
     }
-
-
 }
 
 export default FormSubmit

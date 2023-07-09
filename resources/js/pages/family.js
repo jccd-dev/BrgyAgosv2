@@ -1,6 +1,11 @@
 import $, { isEmptyObject } from 'jquery'
 import axios from 'axios'
 import SearchInputs from '../utils/families'
+import * as bootstrap from 'bootstrap';
+import Swal from 'sweetalert2';
+
+import {get_families} from '../dashboard/get-data'
+import { initializeDataTable, updateDataTableData } from '../utils/familyDatatable'
 
 const newCol = `
             <div class="col-12 search-inputs mb-2">
@@ -40,18 +45,18 @@ const newCol = `
         `
 
 $(()=>{
+    // display all families in datatable
+    get_families().then(data => {
+        initializeDataTable(data)
+    }).catch(error => {console.log(error)})
 
     const submitBtn = $('#submit')
     let fam_name = ''
     let cr = ''
     let electricity = ''
     let water = ''
-    let val = ''
-    let inputVal = ''
-    let roleVal = ''
 
 
-    let searches = $('.member #members')
     let searchData = {}
 
     $('input, select').each(function(){
@@ -94,9 +99,8 @@ $(()=>{
 
                     const searchInputs = inputs.find('#searchInput');
                     searchInputs.each(function(index) {
-                        val = $(this).val();
-                        inputVal = $(this).data("id");
-                        roleVal = roles.eq(index).val();
+                        let inputVal = $(this).data("id");
+                        let roleVal = roles.eq(index).val();
                         let select = $(this).closest(".search-inputs").find('#roleSelect')
                         // console.log(inputVal, roleVal);
 
@@ -182,8 +186,10 @@ $(()=>{
     });
 
 
+    // submit the data family then update the datatable
     submitBtn.on('click', function(e){
 
+        // resetModal()
         const data = {
             familydata: {
                 'family_name': fam_name,
@@ -195,21 +201,56 @@ $(()=>{
         }
         axios.post('/dashboard/add-family', data)
             .then( (response) => {
+                if(response.status === 200){
+                    resetModal()
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
 
+                        Toast.fire({
+                        icon: 'success',
+                        title: response.data.success
+                        }).then(()=>{
+                            get_families().then(data => {
+                                updateDataTableData(data)
+                            })
+                        })
+                }
+            }).catch(err =>{
+                console.log(err)
             })
 
-
-
     })
-
-    const findIndexByValue = (obj, value) => {
-        for (const key in obj) {
-          if (obj[key] === value) {
-            return key;
-          }
-        }
-        return null; // Value not found
-    };
-
-
 })
+
+function resetModal()
+{
+
+    let searchInputsParent = $('#addInputs .member')
+    let searchInputsChilds = searchInputsParent.children('.search-inputs')
+
+    const childsArray = Array.from(searchInputsChilds)
+    //iterate then remove each one
+    childsArray.forEach(child => {
+        child.remove()
+    })
+    //then reset the details
+
+    $('#family_name').val('');
+    $('#cr').val('');
+    $('#electricity').val('');
+    $('#water').val('');
+
+    let modalElement = $('#familyModal')
+    let modal = bootstrap.Modal.getInstance(modalElement)
+
+    modal.hide();
+}

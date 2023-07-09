@@ -1,5 +1,5 @@
 import FormSubmit from '../utils/form-submit'
-import clearForm from '../utils/clearErr'
+import {clearForm} from '../utils/clearErr'
 const importForm = document.querySelector('#import')
 const formImportElements = importForm.querySelectorAll('input, select')
 

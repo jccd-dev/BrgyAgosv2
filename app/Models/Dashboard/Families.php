@@ -14,7 +14,7 @@ class Families extends Model
     protected $fillable = [
         'family_name',
         'with_Cr',
-        'with_Electricity',
+        'with_electricity',
         'water_source'
     ];
 

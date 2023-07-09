@@ -42,6 +42,11 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
     Route::controller(FamiliesController::class)->group( function (){
         Route::get('/families', 'render')->name('d-family');
         Route::post('/add-family', 'add_family')->name('d-add.family');
+        Route::get('/all-families', 'get_families')->name('d-get.families');
+        Route::get('/update-family/{id}', 'update_family')->name('d-update.family');
+        Route::get('/get-members/{id}', 'get_family_members');
+        Route::get('/delete-family/{id}', 'delete_family')->name('d-delete-family');
+        Route::post('/update-family-data', 'update_family_data')->name('d-update.famdata');
     });
 
     Route::controller(AdminController::class)->group(function () {

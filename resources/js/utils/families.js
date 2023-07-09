@@ -19,7 +19,7 @@ class SearchInputs{
 
             if (!isEmptyObject(response.data)) {
                 response.data.forEach((option) => {
-                  let optionEl = $('<a class="dropdown-item" href="#" data-id="' + option.id + '">' + option.fname + '</a>');
+                  let optionEl = $('<a class="dropdown-item" href="#" data-id="' + option.id + '">' + `${option.fname} ${option.lname}` + '</a>');
                   let self = this; // Store reference to 'this'
                   optionEl.on('click', function() {
                     let selectedName = $(this).text();

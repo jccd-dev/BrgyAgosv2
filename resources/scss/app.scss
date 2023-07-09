@@ -10,6 +10,10 @@ $theme-colors: map-merge((
     'teal': $teal
 ),$theme-colors);
 
+$font-sizes: map-merge((
+    7: 11px
+), $font-sizes);
+
 @import '~bootstrap/scss/bootstrap';
 @import '~date-picker/dist/css/bootstrap-datepicker.css';
 @import '~datatable/css/dataTables.bootstrap5.min.css';

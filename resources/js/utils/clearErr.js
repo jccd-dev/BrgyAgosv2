@@ -1,10 +1,10 @@
 // remove error message when user change the value,
 // but brings it back when user delete the value
 
-const clearForm = (formElements) => {
+export const clearForm = (formElements) => {
     formElements.forEach(element => {
 
-        // only for datepicker
+        // only for datepicker --start
         element.addEventListener('focus', ()=>{
             if(element.className == 'form-control datepicker' || element.className == 'form-control file'){
                 element.nextElementSibling.classList.add("d-none");
@@ -16,10 +16,13 @@ const clearForm = (formElements) => {
                     element.nextElementSibling.classList.remove("d-none");
                 }
             }
-        })
-        // only for datepicker
 
-        element.addEventListener('keydown', (e) => {
+            let age = document.querySelector('#age')
+            age.nextElementSibling.classList.add("d-none");
+        })
+        // only for datepicker --end
+
+        element.addEventListener('input', (e) => {
             element.nextElementSibling.classList.add("d-none");
             if(element.value.trim() === ''){
                 element.nextElementSibling.classList.remove("d-none");
@@ -29,5 +32,5 @@ const clearForm = (formElements) => {
     })
 }
 
-export default clearForm
+// export default clearForm
 

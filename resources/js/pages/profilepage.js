@@ -4,7 +4,7 @@ import '../utils/date_picker'
 import '../dashboard/addprofile'
 import '../dashboard/importExcel'
 
-import get_profile from '../dashboard/getprofile'
+import {get_profile} from '../dashboard/get-data'
 import { initializeDataTable } from '../utils/datatable'
 
 $(()=> {
