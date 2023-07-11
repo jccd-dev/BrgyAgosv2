@@ -1,7 +1,9 @@
 import $ from 'jquery';
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
 import 'datatables.net/js/jquery.dataTables'
 import 'datatables.net-bs5/js/dataTables.bootstrap5'
+import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
+
+
 
 export function initializeDataTable(pdata){
     let dataTable
@@ -18,6 +20,7 @@ export function initializeDataTable(pdata){
             { data: 'cstatus'},
             { data: 'zone'},
             { data: 'age'},
+            { data: 'occupation'},
             {
                 data: null,
                 render: function (data, type, row) {
@@ -39,28 +42,17 @@ export function initializeDataTable(pdata){
                 className: 'text-center'
             },
             // { data: 'deseased'}
-            {
-                data: null,
-                render: function (data, type, row) {
-                    if(row.deseased != null){
-                        return `<i class="fa-solid fa-circle text-teal"></i>`;
-                    }
-                    return ''
-                },
-                className: 'text-center'
-            },
         ],
         columnDefs :[
             {width: '270px', target: 0}, // name
-            {width: '60px', target: 1}, // sex
-            {width: '100px', target: 2}, //civil status
-            {width: '70px', target: 3}, //zone
+            {width: '50px', target: 1}, // sex
+            {width: '85px', target: 2}, //civil status
+            {width: '50px', target: 3}, //zone
             {width: '50px', target: 4}, //age
-            {width: '55px', target: 5}, //pwd
-            {width: '55px', target: 6},// senior
-            {width: '70px', target: 7}, //other
-        ]
-
+            {width: '135px', target: 5}, //occupation
+            {width: '45px', target: 6},// pwd
+            {width: '45px', target: 7}, //senior
+        ],
 
       });
 

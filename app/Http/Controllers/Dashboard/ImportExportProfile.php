@@ -53,20 +53,21 @@ class ImportExportProfile extends Controller
             // dd($dataChunk);
             foreach ($dataChunk as $row){
                 $rowData = [
-                    'fname'     => $row['A'],
-                    'mname'     => $row['B'],
-                    'lname'     => $row['C'],
-                    'suffix'    => $row['D'],
-                    'dob'       => date('Y/m/d', strtotime($row['E'])),
-                    'age'       => $row['F'],
-                    'sex'       => $row['G'],
-                    'cstatus'   => $row['H'],
-                    'zone'      => $row['I'],
-                    'bplace'    => $row['J'],
-                    'cpnumber'  => $row['K'],
-                    'email'     => $row['L'],
-                    'pwd'       => $row['M'],
-                    'senior'    => $row['N']
+                    'fname'      => $row['A'],
+                    'mname'      => $row['B'],
+                    'lname'      => $row['C'],
+                    'suffix'     => $row['D'],
+                    'dob'        => date('Y/m/d', strtotime($row['E'])),
+                    'age'        => $row['F'],
+                    'sex'        => $row['G'],
+                    'cstatus'    => $row['H'],
+                    'zone'       => $row['I'],
+                    'bplace'     => $row['J'],
+                    'cpnumber'   => $row['K'],
+                    'edu_attain' => $row['L'],
+                    'occupation' => $row['M'],
+                    'pwd'        => $row['N'],
+                    'senior'     => $row['O']
                 ];
 
                 $inserted = ProfilingModel::updateOrInsert(
@@ -113,7 +114,7 @@ class ImportExportProfile extends Controller
             'Email', 'PWD', 'Senior', 'Deseased'
         ], null, 'A1');
 
-        ProfilingModel::select('fname','mname','lname','suffix','dob','age','sex','cstatus','zone','bplace','cpnumber','email','pwd','senior')
+        ProfilingModel::select('fname','mname','lname','suffix','dob','age','sex','cstatus','zone','bplace','cpnumber','edu_attain', 'occupation','pwd','senior')
             ->chunk($this->chunk_size, function ($data) use ($sheet){
                 $next_row = $sheet->getHighestRow() + 1;
 
@@ -130,7 +131,8 @@ class ImportExportProfile extends Controller
                         $item->zone,
                         $item->bplace,
                         $item->cpnumber,
-                        $item->email,
+                        $item->edu_attain,
+                        $item->occupation,
                         $item->pwd ?? 0,
                         $item->senior ?? 0,
                         $item->deseased ?? 0

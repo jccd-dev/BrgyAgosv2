@@ -23,7 +23,8 @@ class ProfilingModel extends Model
         'zone',
         'bplace',
         'cpnumber',
-        'email',
+        'edu_attain',
+        'occupation',
         'pwd',
         'senior',
         'deseased'

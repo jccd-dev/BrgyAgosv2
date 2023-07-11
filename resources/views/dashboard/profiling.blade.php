@@ -34,9 +34,9 @@
                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="cstatus: activate to sort column ascending" >Civil Status</th>
                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="zone: activate to sort column ascending">Zone</th>
                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="age: activate to sort column ascending">Age</th>
+                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="occupation: activate to sort column ascending">Occupation</th>
                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="pwd: activate to sort column ascending">PWD</th>
                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="senior: activate to sort column ascending">Senior</th>
-                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="deseased: activate to sort column ascending">Deseased</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,20 +71,26 @@
             <x-form.input class="col-md-3" name='dob' label='Birth Date' type='text' inputClass='datepicker' placeholder="m/d/Y" required='true' inputId='datepicker'/>
             <x-form.input class="col-md-3" name='age' label='Age' type='number' required='true' inputId='age'/>
             <x-form.select class="col-md-3" :options="$data=['Female'=>'Female', 'Male' => 'Male']" label="Sex" name='sex' required='true'/>
-            <x-form.select class="col-md-2" required='true'
+            <x-form.select class="col-md-3" required='true'
                 :options="$data=['Married'=>'Married', 'Single' => 'Single', 'Divorced' => 'Divorced', 'Widowed' => 'Widowed']"
                 label="Civil Status"
                 name='cstatus'
             />
-            <x-form.select class="col-md-2"
+            <x-form.select class="col-md-3"
                 :options="$data=['1'=>1, '2' => 2, '3'=> 3, '4'=> 4, '5'=>5, '6'=> 6]"
                 label="Zone"
                 name='zone'
                 required='true'
             />
-            <x-form.input class="col-md-5" name='bplace' label='Birth Place' type='text' required='true'/>
+            <x-form.input class="col-md-6" name='bplace' label='Birth Place' type='text' required='true'/>
             <x-form.input class="col-md-3" name='cpnumber' label='Phone Number' type='text'/>
-            <x-form.input class="col-md-4" name='email' label='Email' type='email' placeholder="Optional"/>
+            <x-form.select class="col-md-4"
+                :options="$data=['None'=> 'None', 'Elementary' => 'Elementary', 'HighScholl'=> 'HighSchool', 'College'=>'College']"
+                label="Education Attainment"
+                name='edu_attain'
+                required='true'
+            />
+            <x-form.input class="col-md-5" name='occupation' label='Occupation' type='text' required="true"/>
 
             {{-- addtional form elemements ( not component) --}}
             <div class="col">

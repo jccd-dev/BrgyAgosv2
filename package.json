@@ -18,8 +18,11 @@
         "bootstrap-select": "^1.13.18",
         "datatables.net": "^1.13.4",
         "datatables.net-bs5": "^1.13.4",
+        "datatables.net-buttons-bs5": "^2.4.1",
         "jquery": "^3.7.0",
+        "jszip": "^3.10.1",
         "moment": "^2.29.4",
+        "pdfmake": "^0.2.7",
         "sweetalert2": "^11.7.12"
     }
 }

@@ -12,21 +12,22 @@ class Profiling extends Controller
 {
     //initialize validation rules
     protected array $rules = [
-        'fname'     => "required|regex:/^[A-Za-z\s]+$/",
-        'mname'     => 'required|regex:/^[A-Za-z\s]+$/',
-        'lname'     => 'required|regex:/^[A-Za-z\s]+$/',
-        'suffix'    => 'nullable|max:2|alpha',
-        'dob'       => 'required|date_format:Y-m-d',
-        'age'       => 'required|numeric|digits_between:1,3|max:150',
-        'sex'       => 'required|alpha',
-        'cstatus'   => 'required|alpha',
-        'zone'      => 'required|numeric|digits:1',
-        'bplace'    => "required",
-        'cpnumber'  => "nullable|regex:/^09\d{9}$/",
-        'email'     => 'nullable|email',
-        'pwd'       => 'nullable',
-        'senior'    => 'nullable',
-        'deseased'  => 'nullable'
+        'fname'      => "required|regex:/^[A-Za-z\s]+$/",
+        'mname'      => 'required|regex:/^[A-Za-z\s]+$/',
+        'lname'      => 'required|regex:/^[A-Za-z\s]+$/',
+        'suffix'     => 'nullable|max:2|alpha',
+        'dob'        => 'required|date_format:Y-m-d',
+        'age'        => 'required|numeric|digits_between:1,3|max:150',
+        'sex'        => 'required|alpha',
+        'cstatus'    => 'required|alpha',
+        'zone'       => 'required|numeric|digits:1',
+        'bplace'     => "required",
+        'cpnumber'   => "nullable|regex:/^09\d{9}$/",
+        'edu_attain' => 'required',
+        'occupation' => 'required',
+        'pwd'        => 'nullable',
+        'senior'     => 'nullable',
+        'deseased'   => 'nullable'
     ];
 
     protected array $message = [
@@ -95,7 +96,8 @@ class Profiling extends Controller
         $resident->zone = $request->post('zone');
         $resident->bplace = $request->post('bplace');
         $resident->cpnumber = $request->post('cpnumber');
-        $resident->email = $request->post('email');
+        $resident->edu_attain = $request->post('edu_attain');
+        $resident->occupation = $request->post('occupation');
         $resident->pwd = $request->post('pwd');
         $resident->senior = $request->post('senior');
         $resident->deseased = $request->post('deceased');
@@ -121,7 +123,7 @@ class Profiling extends Controller
 
     public function get_all_profiles(){
 
-        $data = ProfilingModel::select('id','fname','mname','lname','suffix','age','sex','cstatus','zone','pwd','senior', 'deseased')->get();
+        $data = ProfilingModel::select('id','fname','mname','lname','suffix','age','occupation','sex','cstatus','zone','pwd','senior')->get();
         // dd($data);
         return response()->json(['users' => $data], 200);
     }
