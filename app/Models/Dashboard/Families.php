@@ -13,9 +13,7 @@ class Families extends Model
     protected $table = 'families';
     protected $fillable = [
         'family_name',
-        'with_Cr',
-        'with_electricity',
-        'water_source'
+        'house_ownership'
     ];
 
     public $timestamps = false;

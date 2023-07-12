@@ -9,7 +9,7 @@
             <div class="px-2 w-100">
                 <div class="d-flex flex-column">
                     <span class="border-bottom py-1">Profile of</span>
-                    <h1 class="fs-2">{{ strtoupper("{$fam_data->family_name}") }} FAMILY</h1>
+                    <h1 class="fs-2">{{ strtoupper("{$fam_data->family_name}") }}</h1>
                 </div>
             </div>
         </div>
@@ -28,28 +28,17 @@
     </div>
 </div>
 <x-form-modal id="addInputs">
-    <div class="col-md-3">
+    <div class="col-md-6">
         <input class="form-control" type="text" placeholder="Family Name" aria-label="default input example" id="family_name" value="{{$fam_data->family_name}}">
     </div>
-    <div class="col-md-3">
-        <select class="form-select" aria-label="Default select example" id="cr">
-            <option selected value="">CR</option>
-            <option value="With CR" class="fw-bold" {{ $fam_data->with_Cr == 'With CR' ? 'selected' : ''}}>With CR</option>
-            <option value="None" class="fw-bold" {{ $fam_data->with_Cr == 'None' ? 'selected' : ''}}>None</option>
-          </select>
-    </div>
-    <div class="col-md-3">
-        <select class="form-select" aria-label="Default select example" id="electricity">
-            <option selected value="">Electricity</option>
-            <option value="With Electricity" class="fw-bold" {{ $fam_data->with_electricity == 'With Electricity' ? 'selected' : ''}}>With Electricity</option>
-            <option value="None" class="fw-bold" {{ $fam_data->with_electricity == 'None' ? 'selected' : ''}}>None</option>
-          </select>
-    </div>
-    <div class="col-md-3">
-        <select class="form-select" aria-label="Default select example" id="water">
-            <option selected value="">Source of Water</option>
-            <option value="Nawasa" class="fw-bold" {{ $fam_data->water_source == 'Nawasa' ? 'selected' : ''}}>Nawasa</option>
-            <option value="Poso" class="fw-bold" {{ $fam_data->water_source == 'Poso' ? 'selected' : ''}}>Poso</option>
+    <div class="col-md-6">
+        <select class="form-select" aria-label="Default select example" id="houseOwnerShip">
+            <option selected value="">House Owned</option>
+            <option value="Owned" {{$fam_data->house_ownership == 'Owned' ? 'selected' : ''}} class="fw-bold">Owned</option>
+            <option value="Rented" class="fw-bold" {{$fam_data->house_ownership == 'Rented' ? 'selected' : ''}}>Rented</option>
+            <option value="Shared with Owner" class="fw-bold" {{$fam_data->house_ownership == 'Shared with Owner' ? 'selected' : ''}}>Shared with Owner</option>
+            <option value="Shared with Renter" class="fw-bold" {{$fam_data->house_ownership == 'Shared with Renter' ? 'selected' : ''}}>Shared with Renter</option>
+            <option value="Informal Setller" class="fw-bold" {{$fam_data->house_ownership == 'Informal Setller' ? 'selected' : ''}}>Informal Setller</option>
           </select>
     </div>
     <div class="col-12 bg-light text-center fs-4">

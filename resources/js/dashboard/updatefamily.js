@@ -43,9 +43,7 @@ const newCol = `
 $(() => {
 const submitBtn = $('#submit')
 let fam_name = ''
-let cr = ''
-let electricity = ''
-let water = ''
+let houseOwnerShip = ''
 
 let deletedData = []
 let searchData = {}
@@ -87,9 +85,7 @@ const observer = new MutationObserver(function(mutationsList, observer) {
                 e.preventDefault();
 
                 fam_name = $('#family_name').val();
-                cr = $('#cr').val();
-                electricity = $('#electricity').val();
-                water = $('#water').val();
+                houseOwnerShip = $('#houseOwnerShip').val();
 
                 const searchInputs = inputs.find('#searchInput');
                 searchInputs.each(function(index) {
@@ -105,7 +101,7 @@ const observer = new MutationObserver(function(mutationsList, observer) {
                     }
                 });
 
-                if (cr !== '' && fam_name !== '' && water !== '' && electricity !== '') {
+                if (fam_name === '' && houseOwnerShip === '') {
                     if (!isEmptyObject(searchData)) {
                         submitBtn.removeAttr('disabled');
                     } else {
@@ -216,9 +212,7 @@ submitBtn.on('click', function(e){
     const data = {
         familydata: {
             'family_name': fam_name,
-            'with_Cr': cr,
-            'with_electricity': electricity,
-            'water_source' : water
+            'house_ownership': houseOwnerShip,
         },
         members : searchData,
         removedMembers: deletedData,

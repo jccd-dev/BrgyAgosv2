@@ -10,16 +10,12 @@ export function initializeDataTable(fdata){
         columns: [
             { data: 'id'},
             { data: 'family_name'},
-            { data: 'with_Cr'},
-            { data: 'with_electricity'},
-            { data: 'water_source'}
+            { data: 'house_ownership'},
         ],
         columnDefs :[
             {width: '50px', target: 0}, // id
             {width: '150px', target: 1}, // family name
-            {width: '100px', target: 2}, //with Cr
-            {width: '100px', target: 3}, //electricity
-            {width: '100px', target: 4}, //water
+            {width: '150px', target: 2}, // ownership
         ]
 
 
@@ -29,20 +25,20 @@ export function initializeDataTable(fdata){
       $('#example_filter').parent('.col-sm-12').removeClass('col-sm-12 col-md-6').addClass('col justify-content-end')
 
       // Add filter input
-      $('#example_filter').append('<input type="text" id="CR-filter" class="form-control form-control-sm custom-input" placeholder="CR" aria-controls="example">');
-      $('#example_filter').append('<input type="text" id="electricity-filter" class="form-control form-control-sm custom-input" placeholder="Electricity" aria-controls="example">');
-      $('#example_filter').append('<input type="text" id="water-filter" class="form-control form-control-sm custom-input" placeholder="Water" aria-controls="example">');
+    //   $('#example_filter').append('<input type="text" id="CR-filter" class="form-control form-control-sm custom-input" placeholder="CR" aria-controls="example">');
+    //   $('#example_filter').append('<input type="text" id="electricity-filter" class="form-control form-control-sm custom-input" placeholder="Electricity" aria-controls="example">');
+      $('#example_filter').append('<input type="text" id="ownership" class="form-control form-control-sm w-25" placeholder="Ownership" aria-controls="example">');
 
       // Apply filter on keyup
-      $('#CR-filter').on('keyup', function () {
+      $('#ownership').on('keyup', function () {
         dataTable.columns(2).search(this.value).draw();
       });
-      $('#electricity-filter').on('keyup', function () {
-        dataTable.columns(3).search(this.value).draw();
-      });
-      $('#water-filter').on('keyup', function () {
-        dataTable.columns(4).search(this.value).draw();
-      });
+    //   $('#electricity-filter').on('keyup', function () {
+    //     dataTable.columns(3).search(this.value).draw();
+    //   });
+    //   $('#water-filter').on('keyup', function () {
+    //     dataTable.columns(4).search(this.value).draw();
+    //   });
 
       $('#example tbody').on('mouseenter', 'tr', function () {
         // $(this).removeClass('odd');

@@ -21,10 +21,9 @@
               <thead>
                 <tr>
                     <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="age: activate to sort column ascending">ID</th>
-                  <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="name: activate to sort column descending">Family Name</th>
-                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="sex: activate to sort column ascending" >CR</th>
-                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="cstatus: activate to sort column ascending" >Electricity</th>
-                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="zone: activate to sort column ascending">Water Source</th>
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="name: activate to sort column descending">Family Name</th>
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="name: activate to sort column descending">House Ownership</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -39,28 +38,17 @@
 <!-- Modal -->
 <x-modal class="modal-lg" title="Family Details" id="familyModal">
     <x-form-modal id="addInputs">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <input class="form-control" type="text" placeholder="Family Name" aria-label="default input example" id="family_name">
         </div>
-        <div class="col-md-3">
-            <select class="form-select" aria-label="Default select example" id="cr">
-                <option selected value="">CR</option>
-                <option value="With CR" class="fw-bold">With CR</option>
-                <option value="None" class="fw-bold">None</option>
-              </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-select" aria-label="Default select example" id="electricity">
-                <option selected value="">Electricity</option>
-                <option value="With Electricity" class="fw-bold">With Electricity</option>
-                <option value="None" class="fw-bold">None</option>
-              </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-select" aria-label="Default select example" id="water">
-                <option selected value="">Source of Water</option>
-                <option value="Nawasa" class="fw-bold">Nawasa</option>
-                <option value="Poso" class="fw-bold">Poso</option>
+        <div class="col-md-6">
+            <select class="form-select" aria-label="Default select example" id="houseOwnerShip">
+                <option selected value="">House Owned</option>
+                <option value="Owned" class="fw-bold">Owned</option>
+                <option value="Rented" class="fw-bold">Rented</option>
+                <option value="Shared with Owner" class="fw-bold">Shared with Owner</option>
+                <option value="Shared with Renter" class="fw-bold">Shared with Renter</option>
+                <option value="Informal Setller" class="fw-bold">Informal Setller</option>
               </select>
         </div>
         <div class="col-12 bg-light text-center fs-4">

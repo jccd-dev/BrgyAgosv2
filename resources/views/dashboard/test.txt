@@ -1,0 +1,26 @@
+<div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" id="cr">
+                <option selected value="">CR</option>
+                <option value="With CR" class="fw-bold">With CR</option>
+                <option value="None" class="fw-bold">None</option>
+              </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" id="electricity">
+                <option selected value="">Electricity</option>
+                <option value="With Electricity" class="fw-bold">With Electricity</option>
+                <option value="None" class="fw-bold">None</option>
+              </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" id="water">
+                <option selected value="">Source of Water</option>
+                <option value="Nawasa" class="fw-bold">Nawasa</option>
+                <option value="Poso" class="fw-bold">Poso</option>
+              </select>
+        </div>
+
+
+<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="sex: activate to sort column ascending" >CR</th>
+                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="cstatus: activate to sort column ascending" >Electricity</th>
+                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="zone: activate to sort column ascending">Water Source</th>

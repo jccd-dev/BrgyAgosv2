@@ -53,9 +53,7 @@ $(()=>{
 
     const submitBtn = $('#submit')
     let fam_name = ''
-    let cr = ''
-    let electricity = ''
-    let water = ''
+    let houseOwnerShip = ''
 
 
     let searchData = {}
@@ -94,9 +92,7 @@ $(()=>{
                     e.preventDefault();
 
                     fam_name = $('#family_name').val();
-                    cr = $('#cr').val();
-                    electricity = $('#electricity').val();
-                    water = $('#water').val();
+                    houseOwnerShip = $('#houseOwnerShip').val();
 
                     const searchInputs = inputs.find('#searchInput');
                     searchInputs.each(function(index) {
@@ -112,7 +108,7 @@ $(()=>{
                         }
                     });
 
-                    if (cr !== '' && fam_name !== '' && water !== '' && electricity !== '') {
+                    if (fam_name !== '' && houseOwnerShip !== '') {
                         if (!isEmptyObject(searchData)) {
                             submitBtn.removeAttr('disabled');
                         } else {
@@ -194,9 +190,7 @@ $(()=>{
         const data = {
             familydata: {
                 'family_name': fam_name,
-                'with_Cr': cr,
-                'with_electricity': electricity,
-                'water_source' : water
+                'house_ownership' : houseOwnerShip
             },
             members : searchData
         }
@@ -246,9 +240,7 @@ function resetModal()
     //then reset the details
 
     $('#family_name').val('');
-    $('#cr').val('');
-    $('#electricity').val('');
-    $('#water').val('');
+    $('#houseOwnerShip').val('');
 
     let modalElement = $('#familyModal')
     let modal = bootstrap.Modal.getInstance(modalElement)
