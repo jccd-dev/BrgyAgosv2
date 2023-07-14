@@ -40,7 +40,7 @@ class FamiliesController extends Controller
             return response()->json(['success'=> 'family successfully saved'], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
+            // dd($th);
             return response()->json(['error'=> 'family successfully saved'], 500);
         }
 
@@ -126,5 +126,38 @@ class FamiliesController extends Controller
             // return response()->json(['error'=> 'family successfully saved'], 500);
         }
 
+    }
+
+    // use to get all families base from search inputs
+    // and use to populate the option
+    public function families_option(Request $request){
+
+        $searchTerm = $request->input('search');
+        $options = null;
+        if($searchTerm != null){
+            $options = Families::query()
+                ->when($searchTerm, function ($query, $searchVal){
+                    $query->select('id','family_name')
+                        ->where('family_name', 'LIKE', '%'.$searchVal.'%');
+                })->get();
+        }
+        return response()->json($options);
+    }
+
+    // get the family heads options only for picking the household head
+    public function get_all_famheads(Request $request){
+        $searchTerm = $request->input('search');
+        $options = FamilyMembers::query()
+            ->when($searchTerm, function ($query, $searchVal){
+                $query->where('family_role', 'Head')
+                    ->whereHas('resident', function ($query) use ($searchVal){
+                        $query->where('fname', 'like', '%'.$searchVal.'%')
+                            ->orWhere('lname', 'like', '%'.$searchVal.'%');
+                    });
+            })
+            ->where('family_role', 'Head')
+            ->with('resident')
+            ->get();
+        return response()->json($options);
     }
 }

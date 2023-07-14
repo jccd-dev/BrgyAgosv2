@@ -76,7 +76,7 @@ const observer = new MutationObserver(function(mutationsList, observer) {
 
 
             let search = new SearchInputs(inputs)
-            search.onInput()
+            search.onInput('families', '/dashboard/get-option')
             search.showOptions()
             search.hideOptions()
 
@@ -200,8 +200,6 @@ $(document).on("click", ".remove-input", function() {
             $(this).closest(".search-inputs").remove()
         });
     }
-
-    console.log(id)
 
 });
 

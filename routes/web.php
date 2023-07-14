@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Home;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Dashboard\Profiling;
 use App\Http\Controllers\Dashboard\FamiliesController;
+use App\Http\Controllers\Dashboard\HouseholdController;
 use App\Http\Controllers\Dashboard\ImportExportProfile;
 
 /*
@@ -21,6 +22,7 @@ use App\Http\Controllers\Dashboard\ImportExportProfile;
 Route::get('/', [AdminController::class, 'index'])->name('base');
 Route::post('/login', [AdminController::class, 'login'])->name('login');
 
+Route::get('/get-famheads', [FamiliesController::class, 'get_all_famheads']);
 Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
     Route::get('/', [Home::class, 'render'])->name('d-home');
     // Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');
@@ -47,11 +49,21 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
         Route::get('/get-members/{id}', 'get_family_members');
         Route::get('/delete-family/{id}', 'delete_family')->name('d-delete-family');
         Route::post('/update-family-data', 'update_family_data')->name('d-update.famdata');
+        Route::get('/get-familiesOpt', 'families_option');
+        Route::get('/get-famheads', 'get_all_famheads');
     });
 
     Route::controller(AdminController::class)->group(function () {
         Route::get('/setting', 'renderSetting')->name('d-admin.setting');
         Route::post('/update-admin', 'update')->name('d-admin.update');
         Route::get('/logout', 'destroy')->name('d-admin.logout');
+    });
+
+    Route::controller(HouseholdController::class)->group(function (){
+        Route::get('/household', 'index')->name('d-household.main');
+        Route::get('/all-households', 'get_households');
+        Route::post('/add-household', 'add_household');
+        Route::get('/household-update/{id}', 'household_update')->name('d-household.update');
+        Route::get('/get-household-families/{id}', 'get_household_families')->name('d-house.members');
     });
 });

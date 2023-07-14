@@ -20,7 +20,18 @@ async function get_families() {
     }
 }
 
+async function get_households() {
+    try {
+        const response = await axios.get('/dashboard/all-households');
+        return response.data.households
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export {
     get_profile,
-    get_families
+    get_families,
+    get_households
 }
