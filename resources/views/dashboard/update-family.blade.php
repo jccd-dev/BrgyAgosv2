@@ -22,7 +22,17 @@
         </div>
         <div class="row ">
             <div class="col">
-                <a href="{{route('d-family')}}" class="btn btn-dark w-100">Back</a>
+                @php
+                    $previousUrl = url()->previous();
+                    $currentUrl = url()->current();
+                    $fallbackUrl = route('d-family'); // Replace with your desired fallback URL
+                @endphp
+                {{-- <a href="" class="btn btn-dark w-100">Back</a> --}}
+                @if ($previousUrl != $currentUrl)
+                    <a href="{{ $previousUrl }}" class="btn btn-dark w-100">Go Back</a>
+                @else
+                    <a href="{{ $fallbackUrl }}" class="btn btn-dark w-100">Go Back</a>
+                @endif
             </div>
         </div>
     </div>

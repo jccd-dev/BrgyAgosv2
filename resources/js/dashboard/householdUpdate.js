@@ -6,21 +6,26 @@ import Swal from 'sweetalert2'
 import {newCol2} from '../utils/others'
 
 $(()=>{
-    appendFam()
+
     let family_head = ''
     let structure = ''
     let cr = ''
     let waste = ''
     let electrcity = ''
     let water = ''
+    let head_id = ''
 
     let familiesData = []
     let deletedFamilies = []
 
+    appendFam()
     // listener for input and select user behaviors
     $('input, select').each(function(){
-        $(this).on('input, change', function(){
+        $(this).on('input', function(){
             $('#submit').attr('disabled', true)
+            if($(this).attr('id') == 'fam_head'){
+                $(this).data('id', '')
+            }
         })
     })
 
@@ -33,15 +38,119 @@ $(()=>{
     $(document).on('click', '.remove-input', function () {
         const searchInputs = $(this).closest(".search-inputs").find('#searchInput')
         const id = searchInputs.data('id')
-        console.log(id);
+
         if(id != null){
             // push the id of the deleted members
+            familiesData = familiesData.filter(item => item !== id)
             deletedFamilies.push(id)
         }
-        $(this).closest(".search-inputs").fadeOut(550, ()=>{
-            $(this).remove()
-        })
+        const self = $(this)
+        $(this).closest(".search-inputs").fadeOut()
         $('#submit').attr('disabled', true)
+
+        $(this).closest(".search-inputs").remove()
+
+
+    })
+
+    //visit the family data page
+    $(document).on('click', '.see-family', function () {
+        const fam_id = $(this).data('id')
+        if(fam_id != null || fam_id != ''){
+            window.location.href = `/dashboard/update-family/${fam_id}`
+        }
+    })
+
+    // submit the data to the sever
+    $('#submit').on('click', function(e){
+        e.preventDefault()
+
+        const data = {
+            householddata: {
+                'family_head': family_head,
+                'h_structure': structure,
+                'water_source': water,
+                'electricity': electrcity,
+                'comfort_room': cr,
+                'waste_management': waste,
+            },
+            members: familiesData,
+            deleted: deletedFamilies,
+            houseId: $(this).data('id')
+        }
+
+        axios.post('/dashboard/update-household', data)
+            .then((response)=>{
+                if(response.status === 200){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+
+                        Toast.fire({
+                        icon: 'success',
+                        title: response.data.success
+                        }).then(()=>{
+                            window.location.reload()
+                        })
+                }
+            })
+            .catch(err => console.log(err))
+    })
+
+    $('#save').on('click', function(e) {
+        e.preventDefault();
+        let searchInputsParent = $('#addInputs .member')
+        let searchInputsChilds = searchInputsParent.children('.search-inputs').find('#searchInput')
+
+        const childsArray = Array.from(searchInputsChilds)
+        //iterate then remove each one
+        childsArray.forEach(child => {
+            let inputVal = $(child).data("id");
+            if (inputVal) {
+                if(!familiesData.includes(inputVal)){
+                    $(this).removeClass('border-danger')
+                    familiesData.push(inputVal)
+                }
+            }
+        })
+
+        family_head = $('#fam_head').val();
+        structure = $('#structure').val()
+        cr = $('#cr').val()
+        waste = $('#waste').val()
+        electrcity = $('#electricity').val()
+        water = $('#water').val()
+        head_id = $('#fam_head').data("id")
+
+        if (
+            family_head != '' &&
+            structure != '' &&
+            cr != '' &&
+            waste != '' &&
+            electrcity != '' &&
+            water != '' &&
+            head_id != ''
+        ) {
+
+            if (familiesData.length > 0) {
+                $('#submit').removeAttr('disabled');
+            } else {
+                $('#submit').attr('disabled', true);
+            }
+        } else {
+            $('#submit').attr('disabled', true);
+
+        }
+
+        console.log(familiesData);
     })
 
      //populate options for household head input
@@ -67,55 +176,6 @@ $(()=>{
                 search.showOptions()
                 search.hideOptions()
 
-
-                $('#save').on('click', function(e) {
-                    e.preventDefault();
-
-                    family_head = $('#fam_head').val();
-                    structure = $('#structure').val()
-                    cr = $('#cr').val()
-                    waste = $('#waste').val()
-                    electrcity = $('#electricity').val()
-                    water = $('#water').val()
-                    head_id = $('#fam_head').data("id")
-
-                    //then get all fam head data in appended inputs
-                    const searchInputs = inputs.find('#searchInput');
-                    searchInputs.each(function(index) {
-                        let inputVal = $(this).data("id");
-                        console.log(inputVal)
-                        if (inputVal) {
-                            $(this).removeClass('border-danger')
-                            familiesData.push(inputVal)
-                        }
-                    });
-                    console.log([family_head, structure, cr, waste, electrcity, water]);
-
-                    if (
-                        family_head != '' &&
-                        structure != '' &&
-                        cr != '' &&
-                        waste != '' &&
-                        electrcity != '' &&
-                        water != '' &&
-                        head_id != ''
-                    ) {
-
-                        if (familiesData.length) {
-                            $('#submit').removeAttr('disabled');
-                        } else {
-                            $('#submit').attr('disabled', true);
-                        }
-                    } else {
-                        console.log('empty');
-                        $('#submit').attr('disabled', true);
-                    }
-
-                    // e.stopPropagation()
-                });
-
-
-
                 $(this).find('#searchInput').each(function(){
                     $(this).on('change, input', function(){
                         // remove data from the familiesData (family id)
@@ -130,7 +190,6 @@ $(()=>{
                         $('#submit').attr('disabled', true)
                     })
                 })
-
             });
           }
         }
@@ -163,6 +222,7 @@ const appendFam = () => {
         for (let families in res){
             if(res.hasOwnProperty(families)){
                 const family = res[families].families
+                console.log(family);
                 $('.member').append(
                     `
                     <div class="col-12 search-inputs mb-2">
@@ -175,7 +235,7 @@ const appendFam = () => {
                                             Option
                                         </button>
                                         </div>
-                                        <input type="text" class="form-control rounded-end" id="searchInput" data-id="${family.id}" placeholder="Search..." value=${family.family_name}>
+                                        <input type="text" class="form-control rounded-end" id="searchInput" data-id="${family.id}" value='${family.family_name}' placeholder="Search..." >
                                         <div class="dropdown-menu w-100 mt-5" id="optionsContainer">
                                         <!-- Options will be dynamically populated here -->
                                         </div>
@@ -184,6 +244,7 @@ const appendFam = () => {
                             </div>
                             <div class="col-md-2 text-center">
                                 <button type="button" class="btn btn-danger remove-input"><i class="fa-solid fa-trash-can"></i></button>
+                                <button type="button" class="btn btn-warning see-family" data-id="${family.id}"><i class="fa-solid fa-eye"></i></button>
                             </div>
                         </div>
                     </div>

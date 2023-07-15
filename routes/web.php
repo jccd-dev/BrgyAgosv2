@@ -63,6 +63,7 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
         Route::get('/household', 'index')->name('d-household.main');
         Route::get('/all-households', 'get_households');
         Route::post('/add-household', 'add_household');
+        Route::post('/update-household', 'update_household');
         Route::get('/household-update/{id}', 'household_update')->name('d-household.update');
         Route::get('/get-household-families/{id}', 'get_household_families')->name('d-house.members');
     });

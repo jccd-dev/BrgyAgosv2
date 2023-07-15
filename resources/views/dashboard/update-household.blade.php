@@ -22,7 +22,7 @@
         </div>
         <div class="row ">
             <div class="col">
-                <a href="{{url()->previous()}}" class="btn btn-dark w-100">Back</a>
+                <a href="{{route('d-household.main')}}" class="btn btn-dark w-100">Back</a>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
             <button class="btn btn-secondary dropdown-toggle rounded-end-0" id="options-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </button>
             </div>
-            <input type="text" class="form-control rounded-end" id="fam_head" data-id="" placeholder="searh for household head" value="{{$data->family_head}}">
+            <input type="text" class="form-control rounded-end" id="fam_head" data-id="{{$data->family_head}}" placeholder="searh for household head" value="{{$data->family_head}}">
             <div class="dropdown-menu dropdown-menu-dark w-100 mt-5" id="optionsContainer">
             <!-- Options will be dynamically populated here -->
             </div>
@@ -116,12 +116,12 @@
         <p><i><strong>Warning! </strong> Row field(s) that has a red border or empty value will not be included in data submittion</i> </p>
     </div>
 </div>
-<div class="row justify-content-end mt-4">
+<div class="row justify-content-end mt-4 mb-5">
     <div class="col-md-2">
         <button class="btn btn-warning w-100" id="save">Save</button>
     </div>
     <div class="col-md-3">
-        <button class="btn btn-teal w-100" id="submit" disabled>Submit Family</button>
+        <button class="btn btn-teal w-100" id="submit" disabled data-id="{{$data->id}}">Submit Family</button>
     </div>
 </div>
 @vite(['resources/js/dashboard/householdUpdate.js'])

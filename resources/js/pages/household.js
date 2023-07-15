@@ -137,8 +137,10 @@ $((document)=>{
                         let inputVal = $(this).data("id");
                         console.log(inputVal)
                         if (inputVal) {
-                            $(this).removeClass('border-danger')
-                            familiesData.push(inputVal)
+                            if(!familiesData.includes(inputVal)){
+                                $(this).removeClass('border-danger')
+                                familiesData.push(inputVal)
+                            }
                         }
                     });
                     console.log([family_head, structure, cr, waste, electrcity, water]);
