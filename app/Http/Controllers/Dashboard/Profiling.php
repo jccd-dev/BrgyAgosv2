@@ -56,6 +56,7 @@ class Profiling extends Controller
         $profile_data['fname'] = ucwords($profile_data['fname']);
         $profile_data['mname'] = ucwords($profile_data['mname']);
         $profile_data['lname'] = ucwords($profile_data['lname']);
+        $profile_data['occupation'] = ucwords($profile_data['occupation']);
 
         // dd($profile_data);
         $this->profilingModel->fill($profile_data);
