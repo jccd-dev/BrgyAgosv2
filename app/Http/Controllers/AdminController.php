@@ -6,7 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Helpers\UpdateBirthdays;
 class AdminController extends Controller
 {
     /**
@@ -14,6 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        UpdateBirthdays::updateAge();
         return view('adminl-login');
     }
 
