@@ -5,6 +5,7 @@ const formElements = form.querySelectorAll('input, select');
 const button = form.querySelector('.submit')
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import '../utils/date_picker'
 
 let formChanged = false;
 const deleteRes = document.querySelector('#deleteRes');

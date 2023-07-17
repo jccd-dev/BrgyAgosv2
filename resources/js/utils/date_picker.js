@@ -20,4 +20,5 @@ $('.datepicker').on('changeDate, change', (event)=>{
     const age = currentDate.diff(formattedDate, 'years');
 
     $('#age').val(age)
+    $('.submit').removeAttr('disabled')
 })

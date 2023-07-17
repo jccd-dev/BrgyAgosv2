@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Home;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Dashboard\Setting;
 use App\Http\Controllers\Dashboard\Profiling;
 use App\Http\Controllers\Dashboard\FamiliesController;
 use App\Http\Controllers\Dashboard\HouseholdController;
@@ -67,4 +68,6 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
         Route::get('/household-update/{id}', 'household_update')->name('d-household.update');
         Route::get('/get-household-families/{id}', 'get_household_families')->name('d-house.members');
     });
+
+    Route::get('/backup', [Setting::class, 'backUpDatabase'])->name('d-backup');
 });
