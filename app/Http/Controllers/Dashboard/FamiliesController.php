@@ -116,14 +116,12 @@ class FamiliesController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             $errorCode = $th->getCode();
-            dd($errorCode, $th);
             if ($errorCode == "23000") {
                 return response()->json(['error' => 'Try to save the data first'], 500);
             } else {
                 // Handle other errors
                 return response()->json(['error' => 'An error occurred'], 500);
             }
-            // return response()->json(['error'=> 'family successfully saved'], 500);
         }
 
     }

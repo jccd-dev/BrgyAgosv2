@@ -24,13 +24,14 @@ return new class extends Migration
             $table->tinyInteger('zone');
             $table->string('bplace');
             $table->string('cpnumber')->nullable();
-            $table->string('email')->nullable();
+            $table->string('edu_attain')->nullable();
+            $table->string('occupation')->nullable();
             $table->string('pwd')->nullable();
             $table->string('senior')->nullable();
+            $table->string('deseased')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable();
             $table->index('lname');
-            $table->index('pwd');
             $table->index('zone');
 
         });

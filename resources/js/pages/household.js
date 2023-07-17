@@ -92,8 +92,6 @@ $((document)=>{
                 }
             })
             .catch(err => console.log(err))
-
-
     })
 
     //populate options for household head input

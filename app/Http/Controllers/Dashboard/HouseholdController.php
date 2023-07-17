@@ -46,10 +46,11 @@ class HouseholdController extends Controller
             }
 
             DB::commit();
+            return response()->json(['success'=> 'Household successfully Created'], 200);
         }
         catch (\Throwable $th){
             DB::rollBack();
-            dd($th);
+            return response()->json(['error'=> 'Something Went Wrong'], 500);
         }
     }
 
