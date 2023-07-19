@@ -67,7 +67,8 @@ class ImportExportProfile extends Controller
                     'edu_attain' => $row['L'],
                     'occupation' => $row['M'],
                     'pwd'        => $row['N'],
-                    'senior'     => $row['O']
+                    'senior'     => $row['O'],
+                    'deseased'   => $row['P'],
                 ];
 
                 $inserted = ProfilingModel::updateOrInsert(

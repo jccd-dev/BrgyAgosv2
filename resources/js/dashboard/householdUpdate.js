@@ -198,6 +198,44 @@ $(()=>{
     // Configure and start observing the target node for mutations
     const config = { childList: true, subtree: true };
     observer.observe(targetNode, config);
+
+    $('#deleteRes').on('click', (e) => {
+        e.preventDefault()
+        let id = $(e.target).data('id')
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`/dashboard/delete-household/${id}`)
+                    .then( response => {
+                        console.log(response)
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        ).then(()=>{
+                             window.location.href = '/dashboard/household'
+                        })
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Warning',
+                            text: `${err.response.datrs} ${err.response.status}`,
+                        })
+                    })
+
+            }
+          })
+    })
 })
 
 const get_house_members = async () => {

@@ -67,6 +67,7 @@ Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
         Route::post('/update-household', 'update_household');
         Route::get('/household-update/{id}', 'household_update')->name('d-household.update');
         Route::get('/get-household-families/{id}', 'get_household_families')->name('d-house.members');
+        Route::delete('/delete-household/{id}', 'delele_household');
     });
 
     Route::get('/backup', [Setting::class, 'backUpDatabase'])->name('d-backup');

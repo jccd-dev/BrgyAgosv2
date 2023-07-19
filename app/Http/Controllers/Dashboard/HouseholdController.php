@@ -103,6 +103,14 @@ class HouseholdController extends Controller
         return response()->json(['fam' => $household_data], 200);
     }
 
+    public function delele_household(Request $request){
+        $family = Household::find($request->id);
+        if($family->delete()){
+            return response()->json(['success' => 'Profile Deleted'], 200);
+        }
+
+        return response()->json(['errors' => 'Server Error'], 500);
+    }
 
 
 }

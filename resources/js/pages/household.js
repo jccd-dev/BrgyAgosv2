@@ -94,6 +94,54 @@ $((document)=>{
             .catch(err => console.log(err))
     })
 
+    $('#save').on('click', function(e) {
+        e.preventDefault();
+        let searchInputsParent = $('#addInputs .member')
+        let searchInputsChilds = searchInputsParent.children('.search-inputs').find('#searchInput')
+
+        const childsArray = Array.from(searchInputsChilds)
+        //iterate then remove each one
+        childsArray.forEach(child => {
+            let inputVal = $(child).data("id");
+            if (inputVal) {
+                if(!familiesData.includes(inputVal)){
+                    $(this).removeClass('border-danger')
+                    familiesData.push(inputVal)
+                }
+            }
+        })
+
+        family_head = $('#fam_head').val();
+        structure = $('#structure').val()
+        cr = $('#cr').val()
+        waste = $('#waste').val()
+        electrcity = $('#electricity').val()
+        water = $('#water').val()
+        head_id = $('#fam_head').data("id")
+
+        if (
+            family_head != '' &&
+            structure != '' &&
+            cr != '' &&
+            waste != '' &&
+            electrcity != '' &&
+            water != '' &&
+            head_id != ''
+        ) {
+
+            if (familiesData.length > 0) {
+                $('#submit').removeAttr('disabled');
+            } else {
+                $('#submit').attr('disabled', true);
+            }
+        } else {
+            $('#submit').attr('disabled', true);
+
+        }
+
+        console.log(familiesData);
+    })
+
     //populate options for household head input
     const headInput = $('.houseHead')
     let fam_head = new SearchInputs(headInput)
@@ -116,57 +164,6 @@ $((document)=>{
                 search.onInput('household', '/dashboard/get-familiesOpt')
                 search.showOptions()
                 search.hideOptions()
-
-
-                $('#save').on('click', function(e) {
-                    e.preventDefault();
-
-                    family_head = $('#fam_head').val();
-                    structure = $('#structure').val()
-                    cr = $('#cr').val()
-                    waste = $('#waste').val()
-                    electrcity = $('#electricity').val()
-                    water = $('#water').val()
-                    head_id = $('#fam_head').data("id")
-
-                    //then get all fam head data in appended inputs
-                    const searchInputs = inputs.find('#searchInput');
-                    searchInputs.each(function(index) {
-                        let inputVal = $(this).data("id");
-                        console.log(inputVal)
-                        if (inputVal) {
-                            if(!familiesData.includes(inputVal)){
-                                $(this).removeClass('border-danger')
-                                familiesData.push(inputVal)
-                            }
-                        }
-                    });
-                    console.log([family_head, structure, cr, waste, electrcity, water]);
-
-                    if (
-                        family_head != '' &&
-                        structure != '' &&
-                        cr != '' &&
-                        waste != '' &&
-                        electrcity != '' &&
-                        water != '' &&
-                        head_id != ''
-                    ) {
-
-                        if (familiesData.length) {
-                            $('#submit').removeAttr('disabled');
-                        } else {
-                            $('#submit').attr('disabled', true);
-                        }
-                    } else {
-                        console.log('empty');
-                        $('#submit').attr('disabled', true);
-                    }
-
-                    // e.stopPropagation()
-                });
-
-
 
                 $(this).find('#searchInput').each(function(){
                     $(this).on('change, input', function(){
@@ -191,6 +188,9 @@ $((document)=>{
     // Configure and start observing the target node for mutations
     const config = { childList: true, subtree: true };
     observer.observe(targetNode, config);
+
+
+
 })
 
 function resetModal()

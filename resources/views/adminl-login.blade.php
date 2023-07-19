@@ -12,7 +12,7 @@
     @vite(['resources/scss/app.scss', 'resources/js/login.js'])
 </head>
 <body>
-    <section class="vh-100" style="background-color: #508bfc;">
+    <section class="vh-100 bg-dark">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -32,7 +32,7 @@
                         <label class="form-label" for="typePasswordX-2">Password</label>
                     </div>
 
-                    <button class="btn btn-primary btn-md btn-block w-100" type="submit">Login</button>
+                    <button class="btn btn-success btn-md btn-block w-100" type="submit">Login</button>
                   </form>
                   <hr class="my-4">
                 </div>

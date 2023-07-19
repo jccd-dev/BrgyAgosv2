@@ -101,14 +101,11 @@
         </div>
         <div class="col-12 search-inputs mb-2">
             <div class="row">
-                <div class="col-7 text-center fs-5">
-                    <td class="border">Family Member Name</td>
-                </div>
-                <div class="col-4 text-center fs-5">
-                    <td class="w-100">Family Role</td>
+                <div class="col-md-10 text-center fs-5">
+                    <td class="border">Household Members</td>
                 </div>
                 {{-- default should not delete --}}
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <button type="button" class="btn btn-success" id="addNewInput" data-bs-toggle="tooltip" data-bs-placement="right" title="Add Row/Members"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>

@@ -13,7 +13,7 @@ class AgeUpdateSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('admin')->insert([
+        DB::table('is_update')->insert([
             'update_date' => null,
         ]);
     }
