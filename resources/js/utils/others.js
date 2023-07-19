@@ -26,6 +26,7 @@ export const newCol1 = `
                             <option value="Daughter">Daughter</option>
                             <option value="GrandMother">Lola</option>
                             <option value="GrandFather">Lolo</option>
+                            <option value="Solo Parent">Solo Parent</option>
                         </select>
                     </div>
                     <div class="col-md-1">

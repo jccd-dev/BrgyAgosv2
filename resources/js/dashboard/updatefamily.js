@@ -340,6 +340,7 @@ const appendMembers = () =>{
                                 <option value="Daughter" ${res[members].family_role == 'Daughter' ? 'selected': ''}>Daughter</option>
                                 <option value="GrandMother" ${res[members].family_role == 'GrandMother' ? 'selected': ''}>Lola</option>
                                 <option value="GrandFather" ${res[members].family_role == 'GrandFather' ? 'selected': ''}>Lolo</option>
+                                <option value="Solo Parent" ${res[members].family_role == 'Solo Parent' ? 'selected': ''}>Solo Parent</option>
                             </select>
                         </div>
                         <div class="col-md-1">

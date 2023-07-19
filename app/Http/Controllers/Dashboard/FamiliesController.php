@@ -148,6 +148,7 @@ class FamiliesController extends Controller
         $options = FamilyMembers::query()
             ->when($searchTerm, function ($query, $searchVal){
                 $query->where('family_role', 'Head')
+                    ->where('family_role', 'Solo Parent')
                     ->whereHas('resident', function ($query) use ($searchVal){
                         $query->where('fname', 'like', '%'.$searchVal.'%')
                             ->orWhere('lname', 'like', '%'.$searchVal.'%');
