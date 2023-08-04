@@ -14,6 +14,7 @@ class Home extends Controller{
         return view('dashboard.home', $counts);
     }
 
+    //send data to dashboard page
     public function dashboard_counting() {
 
         $profileModel = new ProfilingModel();
@@ -33,6 +34,7 @@ class Home extends Controller{
         ];
     }
 
+    //summarize the age bracket of the residents in the database records
     public function age_bracket(){
         // Generate age brackets subquery
         $ageBracketsSubquery = DB::table(DB::raw('(
@@ -116,7 +118,6 @@ class Home extends Controller{
         // Calculate the overall male and female totals
         $overallMaleTotal = $summary->sum('male');
         $overallFemaleTotal = $summary->sum('female');
-        $overallTotal = $summary->sum('total');
 
         // Combine age bracket summary with overall totals
         $summary = $summary->concat([
@@ -132,6 +133,7 @@ class Home extends Controller{
         return $summary;
     }
 
+    //summarize house structure types for every household
     public function house_structure(){
         $houseStructures = [
             'Full Concrete',
@@ -167,6 +169,7 @@ class Home extends Controller{
         return $result;
     }
 
+    //summarize house ownership
     public function house_ownership()
     {
         $ownership_types = [
@@ -203,6 +206,7 @@ class Home extends Controller{
          return $result;
     }
 
+    // get all listed occupation in database then count
     public function occupations(){
         $occupationCounts = ProfilingModel::select('occupation', DB::raw('COUNT(*) AS count'))
             ->groupBy('occupation')
@@ -228,6 +232,7 @@ class Home extends Controller{
         return $result;
     }
 
+    // summarized house facilities for every households
     public function house_facilities(){
 
         $results = [];
@@ -249,9 +254,9 @@ class Home extends Controller{
             ],
             'waste_management' => [
                 'Burned',
-                'Burried',
+                'Buried',
                 'Recycled',
-                'Owned Dumpside',
+                'Owned Dumpsite',
                 'Collected by Garbage Truck'
             ]
         ];
@@ -281,10 +286,6 @@ class Home extends Controller{
                     'count' => $count,
                 ];
             }
-            // $result[] = (object) [
-            //     'house_structure' => 'Total',
-            //     'count' => $totalCount,
-            // ];
 
             $results[] = $result;
         }

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Dashboard\Families;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use PHPUnit\Framework\Constraint\IsEmpty;
 
 class FamiliesController extends Controller
 {
@@ -19,22 +18,22 @@ class FamiliesController extends Controller
         $family_details = $request->post('familydata');
         $family_members = $request->post('members');
 
-        $formated_members = [];
+        $formatted_members = [];
 
         foreach($family_members as $key => $val){
-            array_push($formated_members, [
+            array_push($formatted_members, [
                 'resident_id' => $key,
                 'family_role' => $val
             ]);
         }
 
-        // dd($family_details, $formated_members);// create a database transaction
+        // create a database transaction
         DB::beginTransaction();
 
-        //it make sure that inserting to database is completed wihout error
+        //it make sure that inserting to database is completed without error
         try {
             $family = Families::create($family_details);
-            $family->family_members()->createMany($formated_members);
+            $family->family_members()->createMany($formatted_members);
             DB::commit();
 
             return response()->json(['success'=> 'family successfully saved'], 200);
@@ -46,6 +45,7 @@ class FamiliesController extends Controller
 
     }
 
+    // get all families data
     public function get_families(){
          $data = Families::all();
 
@@ -82,27 +82,24 @@ class FamiliesController extends Controller
 
         // dd($family_details);
 
-        $formated_members = [];
+        $formatted_members = [];
 
         foreach($family_members as $key => $val){
-            array_push($formated_members, [
+            array_push($formatted_members, [
                 'resident_id' => $key,
                 'family_role' => $val
             ]);
         }
 
-        // dd($formated_members);
-
-        // dd($family_details, $formated_members);// create a database transaction
         DB::beginTransaction();
 
-        //it make sure that inserting to database is completed wihout error
+        //it make sure that inserting to database is completed without error
         try {
             $family = Families::find($fam_id);
 
             $family->update($family_details);
 
-            foreach ($formated_members as $member) {
+            foreach ($formatted_members as $member) {
                 $family->family_members()->updateOrCreate(['resident_id' => $member['resident_id']], $member);
             }
 
@@ -142,7 +139,7 @@ class FamiliesController extends Controller
         return response()->json($options);
     }
 
-    // get the family heads options only for picking the household head
+    // get the family heads and solo parents only for picking the household head
     public function get_all_famheads(Request $request){
         $searchTerm = $request->input('search');
         $options = FamilyMembers::query()

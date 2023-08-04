@@ -1,4 +1,4 @@
-@import url('https://fonts.bunny.net/css?family=roboto');
+@import url('https://fonts.bunny.net/css?family=Inter');
 
 @import '_custom';
 
@@ -7,7 +7,7 @@
 $theme-colors: map-merge((
     "pink": $pink,
     "darkBlue": $blue-500,
-    'teal': $teal
+    'teal': $teal,
 ),$theme-colors);
 
 $font-sizes: map-merge((
@@ -64,4 +64,10 @@ tr{
     margin-top: 4px;
 }
 
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 

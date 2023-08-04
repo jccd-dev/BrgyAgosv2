@@ -9,7 +9,7 @@
             <div class="px-2 w-100">
                 <div class="d-flex flex-column">
                     <span class="border-bottom py-1">Profile of</span>
-                    <h1 class="fs-2">{{ strtoupper("{$user->fname} {$user->lname}") }}</h1>
+                    <h1 class="fs-2">{{ strtoupper("{$user->fname}") }}</h1>
                 </div>
             </div>
         </div>
@@ -18,20 +18,21 @@
         <div class="border bg-light d-flex align-items-center rounded">
             <div class="px-2">
                 <div class="d-flex flex-column w-full">
-                    <span class="border-bottom py-1">Family</span>
-                    <h1 class="fs-2">DIGAY</h1>
+                    <span class="border-bottom py-1">Family Name</span>
+                    <h1 class="fs-2">{{ strtoupper("{$user->lname}") }}</h1>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-2">
-        <div class="row-cols-1">
+        <div class="row pb-1">
             <div class="col">
-                <button class="btn btn-warning w-100">Add Case</button>
+                <a href="{{route('d-profiling')}}" class="btn btn-dark w-100">Back</a>
             </div>
-            <div class="col d-lg-flex flex-row">
-                <a href="{{route('d-profiling')}}" class="btn btn-dark w-50">Back</a>
-                <button class="btn btn-danger w-50" value="{{$user->id}}" id="deleteRes">Delete</button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-danger w-100" value="{{$user->id}}" id="deleteRes">Delete</button>
             </div>
         </div>
     </div>

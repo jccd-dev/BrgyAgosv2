@@ -26,6 +26,9 @@ form.addEventListener('submit', (event) => {
 
     let submit = new FormSubmit(formData, '/dashboard/update-profile', formElements, form)
     submit.updateProfile()
+    setTimeout(()=>{
+        location.reload()
+    }, 2600)
 })
 
 deleteRes.addEventListener('click', (e) => {

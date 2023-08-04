@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 use Illuminate\Routing\Controller;
-use Spatie\DbDumper\Databases\MySql;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+
 class Setting extends Controller{
 
+    // backup the database then download it on computer to secure the database information.
     public function backUpDatabase(){
         $databaseName = config('database.connections.mysql.database');
         $fileName = $databaseName . '-' . date('Y-m-d_H-i-s') . '.sql';

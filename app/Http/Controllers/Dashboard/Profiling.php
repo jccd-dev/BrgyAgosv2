@@ -125,7 +125,7 @@ class Profiling extends Controller
     public function get_all_profiles(){
 
         $data = ProfilingModel::select('id','fname','mname','lname','suffix','age','occupation','sex','cstatus','zone','pwd','senior')->get();
-        // dd($data);
+
         return response()->json(['users' => $data], 200);
     }
 

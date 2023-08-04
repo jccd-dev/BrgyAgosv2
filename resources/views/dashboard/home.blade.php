@@ -121,9 +121,9 @@
                         @else
                             <tr class="text-center">
                                 <th scope="row">{{$summary->age_bracket}}</th>
-                                <td>{{$summary->female}}</td>
-                                <td>{{$summary->male}}</td>
-                                <td>{{$summary->female + $summary->male}}</td>
+                                <td>{{$summary->female ? $summary->female : '-'}}</td>
+                                <td>{{$summary->male ? $summary->male : '-'}}</td>
+                                <td>{{$summary->female + $summary->male ? $summary->female + $summary->male : '-'}}</td>
                             </tr>
                         @endif
 
@@ -139,9 +139,9 @@
             <table class="table table-striped table-bordered caption-top table-sm border-dark">
                 <caption class="fw-semibold text-uppercase fs-4">House Structures Summary</caption>
                 <thead class="text-center">
-                    <tr>
-                    <th scope="col">House Structures Type</th>
-                    <th>Count</th>
+                    <tr class="text-uppercase">
+                        <th >House Structures Type</th>
+                        <th>Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,8 +151,8 @@
                             <th scope="row" class="text-uppercase">{{ $row->house_structure }}</th>
                             <td class="text-center fw-bolder fs-5">{{ $row->count }}</td>
                         @else
-                            <th>{{ $row->house_structure }}</th>
-                            <td class="text-center">{{ $row->count }}</td>
+                            <td>{{ $row->house_structure }}</td>
+                            <td class="text-center">{{ $row->count ? $row->count : '-'}}</td>
                         @endif
                     </tr>
                     @endforeach
@@ -166,8 +166,8 @@
                 <caption class="fw-semibold text-uppercase fs-4">House Ownership</caption>
                 <thead class="text-center">
                     <tr>
-                    <th scope="col">House Ownership Type</th>
-                    <th>Count</th>
+                        <th class="text-uppercase">House Ownership Type</th>
+                        <th class="text-uppercase">Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -177,8 +177,8 @@
                             <th scope="row" class="text-uppercase">{{ $row->house_ownership }}</th>
                             <td class="text-center fw-bolder fs-5">{{ $row->count }}</td>
                         @else
-                            <th>{{ $row->house_ownership }}</th>
-                            <td class="text-center">{{ $row->count }}</td>
+                            <td>{{ $row->house_ownership }}</td>
+                            <td class="text-center">{{ $row->count ? $row->count : '-' }}</td>
                         @endif
                     </tr>
                     @endforeach
@@ -192,8 +192,8 @@
                 <caption class="fw-semibold text-uppercase fs-4">Resident's Occupations</caption>
                 <thead class="text-center">
                     <tr>
-                    <th scope="col">Occupation Lists</th>
-                    <th>Count</th>
+                    <th scope="col" class="text-uppercase">Occupation Lists</th>
+                    <th class="text-uppercase">Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -203,8 +203,8 @@
                             <th scope="row" class="text-uppercase">{{ $row->occupation }}</th>
                             <td class="text-center fw-bolder fs-5">{{ $row->count }}</td>
                         @else
-                            <th>{{ $row->occupation }}</th>
-                            <td class="text-center">{{ $row->count }}</td>
+                            <td>{{ $row->occupation }}</td>
+                            <td class="text-center">{{ $row->count ? $row->count : '-' }}</td>
                         @endif
                     </tr>
                     @endforeach
@@ -214,7 +214,7 @@
     </div>
     <div class="row mt-5 justify-content-center mb-5">
         <div class="col-10">
-            <table class="table table-striped table-bordered caption-top table-sm border-dark">
+            <table class="table table-bordered caption-top table-sm border-dark">
                 <caption class="fw-semibold text-uppercase fs-4">House Facilities</caption>
                 {{-- <thead class="text-center">
                     <tr>
@@ -227,11 +227,11 @@
                         @foreach ($row as $data)
                         <tr>
                             @if ($data->facility == 'Head')
-                                <th scope="row" class="text-uppercase fs-5">{{ $data->head }}</th>
-                                <th class="text-center fw-bolder fs-5">Count</td>
+                                <th scope="row" class="text-uppercase fs-5 bg-teal bg-opacity-25">{{ $data->head }}</th>
+                                <th class="text-center fw-bolder fs-5 bg-teal bg-opacity-25">Count</td>
                             @else
-                                <th>{{ $data->facility }}</th>
-                                <td class="text-center">{{ $data->count }}</td>
+                                <td>{{ $data->facility }}</td>
+                                <td class="text-center">{{ $data->count ? $data->count : '-' }}</td>
                             @endif
                         </tr>
                         @endforeach
