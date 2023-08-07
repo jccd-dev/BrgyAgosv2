@@ -68,7 +68,7 @@
             <x-form.input class="col-md-4" name='mname' label='Middle Name' type='text' required='true'/>
             <x-form.input class="col-md-4" name='lname' label='Last Name' type='text' required='true'/>
             <x-form.input class="col-md-3" name='suffix' label='Suffix' type='text'/>
-            <x-form.input class="col-md-3" name='dob' label='Birth Date' type='text' inputClass='datepicker' placeholder="m/d/Y" required='true' inputId='datepicker'/>
+            <x-form.input class="col-md-3" name='dob' label='Birth Date' type='text' inputClass='datepicker' placeholder="yyyy-mm-dd" required='true' inputId='datepicker'/>
             <x-form.input class="col-md-3" name='age' label='Age' type='number' required='true' inputId='age'/>
             <x-form.select class="col-md-3" :options="$data=['Female'=>'Female', 'Male' => 'Male']" label="Sex" name='sex' required='true'/>
             <x-form.select class="col-md-3" required='true'
