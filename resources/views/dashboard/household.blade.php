@@ -38,7 +38,7 @@
 
 
 <!-- Modal -->
-<x-modal class="modal-lg" title="Family Details" id="houseModal">
+<x-modal class="modal-lg" title="Household Details" id="houseModal">
     <x-form-modal id="addInputs">
         <div class="col-md-5">
             <div class="input-group houseHead">
@@ -97,12 +97,12 @@
               </select>
         </div>
         <div class="col-12 bg-light text-center fs-4">
-            <h4>Family Members</h4>
+            <h4>Household Members</h4>
         </div>
         <div class="col-12 search-inputs mb-2">
             <div class="row">
                 <div class="col-md-10 text-center fs-5">
-                    <td class="border">Household Members</td>
+                    <td class="border">Family Members</td>
                 </div>
                 {{-- default should not delete --}}
                 <div class="col-md-2">
@@ -125,7 +125,7 @@
             <button class="btn btn-warning w-100" id="save">Save</button>
         </div>
         <div class="col-md-3">
-            <button class="btn btn-teal w-100" id="submit" disabled>Submit Family</button>
+            <button class="btn btn-teal w-100" id="submit" disabled>Submit Household</button>
         </div>
     </div>
 </x-modal>

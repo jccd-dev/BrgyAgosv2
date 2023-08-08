@@ -39,11 +39,13 @@
 <x-modal class="modal-lg" title="Family Details" id="familyModal">
     <x-form-modal id="addInputs">
         <div class="col-md-6">
+            <label for="family_name">Family Name</label>
             <input class="form-control" type="text" placeholder="Family Name" aria-label="default input example" id="family_name">
         </div>
         <div class="col-md-6">
+            <label for="houseOwnerShip">House Ownership</label>
             <select class="form-select" aria-label="Default select example" id="houseOwnerShip">
-                <option selected value="">House Owned</option>
+                <option selected value="">House Ownership</option>
                 <option value="Owned" class="fw-bold">Owned</option>
                 <option value="Rented" class="fw-bold">Rented</option>
                 <option value="Shared with Owner" class="fw-bold">Shared with Owner</option>

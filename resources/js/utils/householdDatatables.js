@@ -33,12 +33,12 @@ export function initializeDataTable(hdata){
       // Add filter input
     //   $('#example_filter').append('<input type="text" id="CR-filter" class="form-control form-control-sm custom-input" placeholder="CR" aria-controls="example">');
     //   $('#example_filter').append('<input type="text" id="electricity-filter" class="form-control form-control-sm custom-input" placeholder="Electricity" aria-controls="example">');
-      $('#example_filter').append('<input type="text" id="ownership" class="form-control form-control-sm w-25" placeholder="Ownership" aria-controls="example">');
+    //   $('#example_filter').append('<input type="text" id="ownership" class="form-control form-control-sm w-25" placeholder="Ownership" aria-controls="example">');
 
       // Apply filter on keyup
-      $('#ownership').on('keyup', function () {
-        dataTable.columns(2).search(this.value).draw();
-      });
+    //   $('#ownership').on('keyup', function () {
+    //     dataTable.columns(2).search(this.value).draw();
+    //   });
     //   $('#electricity-filter').on('keyup', function () {
     //     dataTable.columns(3).search(this.value).draw();
     //   });

@@ -39,9 +39,11 @@
 </div>
 <x-form-modal id="addInputs">
     <div class="col-md-6">
+        <label for="family_name">Family Name</label>
         <input class="form-control" type="text" placeholder="Family Name" aria-label="default input example" id="family_name" value="{{$fam_data->family_name}}">
     </div>
     <div class="col-md-6">
+        <label for="houseOwnerShip">House Ownership</label>
         <select class="form-select" aria-label="Default select example" id="houseOwnerShip">
             <option selected value="">House Owned</option>
             <option value="Owned" {{$fam_data->house_ownership == 'Owned' ? 'selected' : ''}} class="fw-bold">Owned</option>
