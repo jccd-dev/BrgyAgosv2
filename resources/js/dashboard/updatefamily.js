@@ -100,15 +100,18 @@ const observer = new MutationObserver(function(mutationsList, observer) {
                         searchData[inputVal] = roleVal;
                     }
                 });
-
-                if (fam_name === '' && houseOwnerShip === '') {
+                console.log(fam_name, houseOwnerShip)
+                if (fam_name != '' && houseOwnerShip != '') {
                     if (!isEmptyObject(searchData)) {
                         submitBtn.removeAttr('disabled');
+                        console.log('test');
                     } else {
                         submitBtn.attr('disabled', true);
+                        console.log('hoy');
                     }
                 } else {
                     submitBtn.attr('disabled', true);
+                    console.log('hey')
                 }
 
             });

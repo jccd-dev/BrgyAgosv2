@@ -85,7 +85,7 @@
             <x-form.input class="col-md-6" name='bplace' label='Birth Place' type='text' required='true'/>
             <x-form.input class="col-md-3" name='cpnumber' label='Phone Number' type='text'/>
             <x-form.select class="col-md-4"
-                :options="$data=['None'=> 'None', 'Elementary' => 'Elementary', 'HighScholl'=> 'HighSchool', 'College'=>'College']"
+                :options="$data=['None'=> 'None', 'Elementary' => 'Elementary', 'HighSchool'=> 'HighSchool', 'College'=>'College']"
                 label="Education Attainment"
                 name='edu_attain'
                 required='true'

@@ -118,7 +118,7 @@
         <button class="btn btn-warning w-100" id="save">Save</button>
     </div>
     <div class="col-md-3">
-        <button class="btn btn-teal w-100" id="submit" disabled data-id="{{$data->id}}">Submit Family</button>
+        <button class="btn btn-teal w-100" id="submit" disabled data-id="{{$data->id}}">Update Household</button>
     </div>
 </div>
 @vite(['resources/js/dashboard/householdUpdate.js'])
