@@ -19,11 +19,15 @@ use App\Http\Controllers\Dashboard\ImportExportProfile;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/manual', function(){
+    return view('manual');
+});
 
-Route::get('/', [AdminController::class, 'index'])->name('base');
+Route::get('/', [AdminController::class, 'index'])->middleware('login.auth')->name('base');
 Route::post('/login', [AdminController::class, 'login'])->name('login');
 
 Route::get('/get-famheads', [FamiliesController::class, 'get_all_famheads']);
+
 Route::prefix('dashboard')->middleware('admin.auth')->group(function(){
     Route::get('/', [Home::class, 'render'])->name('d-home');
     // Route::get('/profiling', [Profiling::class, 'render'])->name('d-profiling');

@@ -99,14 +99,15 @@ class FamiliesController extends Controller
 
             $family->update($family_details);
 
+            // update existing data and if id is not in the database then it create
             foreach ($formatted_members as $member) {
                 $family->family_members()->updateOrCreate(['resident_id' => $member['resident_id']], $member);
             }
 
-
             if(!empty($to_delete)){
                 $family->family_members()->whereIn('resident_id', $to_delete)->delete();
             }
+
             DB::commit();
 
             return response()->json(['success'=> 'family successfully updated'], 200);
